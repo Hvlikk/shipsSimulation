@@ -1,2 +1,2 @@
-public class Royals extends Ship{
+public class BritishShips extends Ship{
 }
