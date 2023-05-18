@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -8,8 +6,7 @@ public class Main {
         System.out.println("Podaj wymiary mapy (X,Y): ");
         Scanner in = new Scanner(System.in);
         Integer mapMaxX = in.nextInt();
-        Integer mapMaxY = in.nextInt();
-        MapCreator map = new MapCreator(mapMaxX, mapMaxY);
+        Integer mapMaxY = mapMaxX;
 
         System.out.println("Podaj liczbe piratow :");
         Integer piratesCount = in.nextInt();
@@ -17,5 +14,8 @@ public class Main {
         System.out.println("Podaj liczbe statkow brytyjskich: ");
         Integer britishShipsCount = in.nextInt();
 
+        MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
+        in.close();
     }
+
 }
