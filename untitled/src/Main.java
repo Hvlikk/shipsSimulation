@@ -16,7 +16,11 @@ public class Main {
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
 
+        System.out.println("Statki brytyjskie = 1, statki piratow = 2");
+        System.out.println("Podgląd mapy przed rozpoczęciem bitwy:");
+        System.out.println("=======================================");
         mapCreator.createMap();
+        mapCreator.createShips(piratesCount, britishShipsCount, mapCreator.getMap());
         mapCreator.showMap();
         in.close();
     }

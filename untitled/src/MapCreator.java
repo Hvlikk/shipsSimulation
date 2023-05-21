@@ -47,13 +47,51 @@ public class MapCreator {
 
     }
 
-    public void createShips(Integer piratesStartCount, Integer britishShipsStartCount)
+    public ArrayList<Ship> createShips(Integer piratesStartCount, Integer britishShipsStartCount, Integer map[][])
     {
         Random random = new Random();
-        for (int i = 1; i <= britishShipsStartCount; i++)
+        for (int i = 1; i <= piratesStartCount; i++)
         {
-            ;
+            Integer posX;
+            Integer posY;
+            boolean shipCreated = false;
+
+            while (!shipCreated){
+                posX = random.nextInt(map[0].length);
+                posY = random.nextInt(map.length);
+
+                if(map[posY][posX] == 0)
+                {
+                    ships.add(new PirateShip(i, posX, posY, 1, null, 1, 2));
+                    map[posY][posX] = 2;
+                    shipCreated = true;
+                }
+            }
         }
 
+        for (int i = 1; i <= britishShipsStartCount; i++)
+        {
+            Integer posX;
+            Integer posY;
+            boolean shipCreated = false;
+
+            while (!shipCreated){
+                posX = random.nextInt(map[0].length);
+                posY = random.nextInt(map.length);
+
+                if(map[posY][posX] == 0)
+                {
+                    ships.add(new BritishShip(i, posX, posY, null, null, null, null));
+                    map[posY][posX] = 1;
+                    shipCreated = true;
+                }
+            }
+        }
+
+        return ships;
+    }
+
+    public ArrayList<Ship> getShips() {
+        return ships;
     }
 }

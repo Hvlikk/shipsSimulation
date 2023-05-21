@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class BritishShips extends Ship{
+public class BritishShip extends Ship{
 
-    public BritishShips (Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement)
+    public BritishShip (Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement)
     {
         super(id, posX, posY, attack, direction, 2, 1);
         this.movement = 1;

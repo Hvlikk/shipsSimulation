@@ -4,12 +4,16 @@ import java.util.Random;
 //Pirates accuracy = 50%
 
 
-public class Pirates extends Ship{
+public class PirateShip extends Ship{
 
-    public Pirates (Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement)
+    public PirateShip(Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement)
     {
-        super(id, posX, posY, attack, direction, 1, 2);
+        super(id, posX, posY, attack, direction, hp, movement);
+        this.hp = 1;
+        this.direction = direction;
+        this.attack = 1;
         this.movement = 2;
+        setRandomDirection();
     }
 
     private void setRandomDirection()
@@ -17,7 +21,7 @@ public class Pirates extends Ship{
         String[] directions = {"North", "East", "West", "South", "South-East", "South-West", "North-East", "North-West"};
         Random random = new Random();
         int index = random.nextInt(directions.length);
-        direction = directions[index];
+        this.direction = directions[index];
     }
 
 
