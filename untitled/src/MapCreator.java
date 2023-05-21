@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class MapCreator {
         map = new Integer[mapHeight][mapWidth];
     }
 
-    public Integer[][] createMap(){
+    public Integer[][] createMap(Integer mapHeight, Integer mapWidth){
         for (int i = 0; i < mapHeight; i++)
         {
             for(int j = 0 ; j < mapWidth; j++)
@@ -47,7 +48,7 @@ public class MapCreator {
 
     }
 
-    public ArrayList<Ship> createShips(Integer piratesStartCount, Integer britishShipsStartCount, Integer map[][])
+    public ArrayList<Ship> createShips(Integer britishShipsStartCount, Integer piratesStartCount, Integer map[][])
     {
         Random random = new Random();
         for (int i = 1; i <= piratesStartCount; i++)
@@ -87,7 +88,6 @@ public class MapCreator {
                 }
             }
         }
-
         return ships;
     }
 

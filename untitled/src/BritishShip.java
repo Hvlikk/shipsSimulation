@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class BritishShip extends Ship{
@@ -18,7 +19,7 @@ public class BritishShip extends Ship{
     }
 
     @Override
-    public void shipMovement()
+    public void shipMovement(Integer map[][], ArrayList<Ship> ships)
     {
         switch (direction) {
             case "North" -> posY += movement;

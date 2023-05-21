@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -19,8 +20,10 @@ public class Main {
         System.out.println("Statki brytyjskie = 1, statki piratow = 2");
         System.out.println("Podgląd mapy przed rozpoczęciem bitwy:");
         System.out.println("=======================================");
-        mapCreator.createMap();
-        mapCreator.createShips(piratesCount, britishShipsCount, mapCreator.getMap());
+        Integer[][] map = mapCreator.createMap(mapMaxX, mapMaxY);
+        ArrayList<Ship> ships = mapCreator.createShips(britishShipsCount, piratesCount, mapCreator.getMap());
+        BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, map);
+        battleSimulator.simulateBattle();
         mapCreator.showMap();
         in.close();
     }

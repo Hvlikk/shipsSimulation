@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Ship {
     protected Integer id;
     protected Integer posX;
@@ -17,11 +19,12 @@ public abstract class Ship {
         this.movement = movement;
     }
 
-    public void shipMovement(){}
     public void shipAttack(){
 
     }
     public void reciveDamage(Integer attack){
         hp -= attack;
     }
+
+    public abstract void shipMovement(Integer map[][], ArrayList<Ship> ships);
 }
