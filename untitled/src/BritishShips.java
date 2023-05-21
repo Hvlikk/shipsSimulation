@@ -2,12 +2,10 @@ import java.util.Random;
 
 public class BritishShips extends Ship{
 
-    private final String flag;
-    public BritishShips (Integer posX, Integer posY, Integer attack, String direction, Integer movement, Integer id, String flag)
+    public BritishShips (Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement)
     {
-        super(posX, posY, attack, direction, null, id);
+        super(id, posX, posY, attack, direction, 2, 1);
         this.movement = 1;
-        this.flag = "BRITISH";
         setRandomDirection();
     }
 

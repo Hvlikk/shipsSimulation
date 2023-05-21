@@ -1,15 +1,27 @@
 public abstract class Ship {
-    private Integer posX;
-    private Integer posY;
-    private Integer attack;
-    private String direction;
-    private Integer id;
+    protected Integer id;
+    protected Integer posX;
+    protected Integer posY;
+    protected Integer attack;
+    protected String direction;
+    protected Integer hp;
+    protected Integer movement;
 
-    public Ship (Integer posX, Integer posY, Integer attack, String direction, Integer id){
+    public Ship (Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement){
+        this.id = id;
         this.posX = posX;
         this.posY = posY;
         this.attack = attack;
         this.direction = direction;
-        this.id = id;
+        this.hp = hp;
+        this.movement = movement;
+    }
+
+    public void shipMovement(){}
+    public void shipAttack(){
+
+    }
+    public void reciveDamage(Integer attack){
+        hp -= attack;
     }
 }

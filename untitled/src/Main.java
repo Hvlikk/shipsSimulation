@@ -15,6 +15,9 @@ public class Main {
         Integer britishShipsCount = in.nextInt();
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
+
+        mapCreator.createMap();
+        mapCreator.showMap();
         in.close();
     }
 

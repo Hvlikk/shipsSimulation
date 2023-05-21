@@ -1,14 +1,15 @@
 import java.util.Random;
 
+///Pirates movement = 2;
+//Pirates accuracy = 50%
+
+
 public class Pirates extends Ship{
 
-    private final String flag;
-    public Pirates (Integer posX, Integer posY, Integer attack, String direction, Integer movement, Integer id, String flag)
+    public Pirates (Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement)
     {
-        super(posX, posY, attack, direction, null, id);
-        this.flag = "PIRATES";
+        super(id, posX, posY, attack, direction, 1, 2);
         this.movement = 2;
-
     }
 
     private void setRandomDirection()
