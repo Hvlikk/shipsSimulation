@@ -19,6 +19,22 @@ public abstract class Ship {
         this.movement = movement;
     }
 
+    public void setPosX(Integer posX) {
+        this.posX = posX;
+    }
+
+    public Integer getPosX() {
+        return posX;
+    }
+
+    public Integer getPosY() {
+        return posY;
+    }
+
+    public void setPosY(Integer posY) {
+        this.posY = posY;
+    }
+
     public void shipAttack(){
 
     }

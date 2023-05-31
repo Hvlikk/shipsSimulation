@@ -21,11 +21,19 @@ public class BritishShip extends Ship{
     @Override
     public void shipMovement(Integer map[][], ArrayList<Ship> ships)
     {
+        Integer currentX = getPosX();
+        Integer currentY = getPosY();
+        Integer newX = currentX;
+        Integer newY = currentY;
+
         switch (direction) {
-            case "North" -> posY += movement;
-            case "South" -> posY -= movement;
-            case "West" -> posX -= movement;
-            default -> posX += movement;
+            case "North" -> setPosY(newY += movement);
+            case "South" -> setPosY(newY -= movement);
+            case "West" -> setPosX(newX -= movement);
+            default -> setPosX(newX += movement);
         }
+
+        map[currentY][currentX] = 0;
+
     }
 }
