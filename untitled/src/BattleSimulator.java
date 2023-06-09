@@ -16,10 +16,10 @@ public class BattleSimulator {
 
 
     public void simulateBattle() {
-        for (int k = 0; k < 5; k++) {
+        for (int k = 0; k < 6; k++) {
+
             for (Ship ship : ships)
                 ship.shipMovement(map, ships);
-
 
             for (int i = 0; i < mapHeight; i++) {
                 for (int j = 0; j < mapWidth; j++)

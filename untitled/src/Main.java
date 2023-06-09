@@ -24,8 +24,15 @@ public class Main {
         ArrayList<Ship> ships = mapCreator.createShips(britishShipsCount, piratesCount, mapCreator.getMap());
         BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, map);
         battleSimulator.simulateBattle();
-        mapCreator.showMap();
         in.close();
     }
+
+
+
+    //diagramy do poprawy
+    //visual-paradigm.com
+    //opis troche dodać.
+    
+
 
 }
