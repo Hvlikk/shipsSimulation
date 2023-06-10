@@ -5,13 +5,15 @@ public abstract class Ship {
     protected Integer posX;
     protected Integer posY;
     protected String direction;
+    public Integer MoveSpeed;
 
 
-    public Ship (Integer posX, Integer posY, Integer id, String direction){
+    public Ship (Integer posX, Integer posY, Integer id, String direction, Integer MoveSpeed){
         this.id = id;
         this.posX = posX;
         this.posY = posY;
         this.direction = direction;
+        this.MoveSpeed = MoveSpeed;
     }
 
     public Boolean isCollision(Integer newX, Integer newY, ArrayList<Ship> ships){

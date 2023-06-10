@@ -5,10 +5,12 @@ public class BattleSimulator {
     private final Integer mapWidth;
     private char map[][];
     private ArrayList<Ship> ships;
+    private  final ArrayList<Iceberg> icebergs;
     public Integer TurnCount = 0;
 
 
-    public BattleSimulator(Integer mapWidth, Integer mapHeight, ArrayList<Ship> ships, char map[][]) {
+    public BattleSimulator(Integer mapWidth, Integer mapHeight, ArrayList<Ship> ships, ArrayList<Iceberg> icebergs, char map[][]) {
+        this.icebergs = icebergs;
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
         this.ships = ships;

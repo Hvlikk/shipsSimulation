@@ -9,9 +9,9 @@ public class BritishShip extends Ship{
     protected final static Integer ACCURACY = 75;
     protected final static Integer CANNON_DAMAGE = 1;
 
-    public BritishShip (Integer posX, Integer posY, Integer id, String direction)
+    public BritishShip (Integer posX, Integer posY, Integer id, String direction, Integer MoveSpeed)
     {
-        super(posX, posY, id, direction);
+        super(posX, posY, id, direction, MoveSpeed);
         setRandomDirection();
     }
 
@@ -84,7 +84,7 @@ public class BritishShip extends Ship{
         System.out.println("HP statku piratów po ataku: " + targetShip.getHEALTH());
         if (targetShip.getHEALTH() <= 0)
         {
-            System.out.println("Statek piracki3" +
+            System.out.println("Statek piracki" +
                     " " + targetShip.getId() + " został zestrzelony.");
         }
     }

@@ -8,9 +8,9 @@ public class PirateShip extends Ship{
     private final static Integer MOVEMENT = 2;
     private final static Integer ACCURACY = 50;
     private final static Integer CANNON_DAMAGE = 2;
-    public PirateShip(Integer posX, Integer posY, Integer id, String direction)
+    public PirateShip(Integer posX, Integer posY, Integer id, String direction, Integer MoveSpeed)
     {
-        super(posX, posY, id, direction);
+        super(posX, posY, id, direction, MoveSpeed);
         setRandomDirection();
     }
 
