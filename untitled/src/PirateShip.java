@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 public class PirateShip extends Ship{
+    public static final String COLOR_BLUE = "\u001B[34m";
+    public static final String COLOR_GREEN = "\u001B[32m";
+    public static final String COLOR_RED = "\u001B[31m";
+    public static final String COLOR_RESET = "\u001B[0m";
     private Integer HEALTH = 1;
     private final static Integer MOVEMENT = 2;
     private final static Integer ACCURACY = 50;
@@ -102,8 +106,8 @@ public class PirateShip extends Ship{
         Ship targetShip = targets.get(random.nextInt(targets.size()));
         Integer DAMAGE = calculateDamage();
         targetShip.recieveAttack(DAMAGE);
-        System.out.println("Statek piracki " + getId() + " zaatakował statek brytyjski " + targetShip.getId() + " i uderzył go za " + DAMAGE);
-        System.out.println("HP statku brytyjskiego po ataku: " + targetShip.getHEALTH());
+        System.out.println(COLOR_RED + "Statek piracki " + COLOR_GREEN + getId() + COLOR_RESET + " zaatakował " + COLOR_BLUE + "statek brytyjski " + COLOR_GREEN + targetShip.getId() + COLOR_RESET + " i uderzył go za " + COLOR_GREEN + DAMAGE + COLOR_RESET +" obrażeń" + COLOR_RESET);
+        System.out.println(COLOR_BLUE + "HP statku brytyjskiego po ataku: " + COLOR_GREEN + targetShip.getHEALTH() + COLOR_RESET);
         if (targetShip.getHEALTH() <= 0)
         {
             System.out.println("Statek brytyjski " + targetShip.getId() + " został zestrzelony.");
