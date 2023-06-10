@@ -1,12 +1,13 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.List;
 
 public class BritishShip extends Ship{
-    private Integer HEALTH = 2;
-    private final static Integer MOVEMENT = 1;
-    private final static Integer ACCURACY = 75;
-    private final static Integer CANNON_DAMAGE = 1;
+    protected Integer HEALTH = 2;
+    protected final static Integer MOVEMENT = 1;
+    protected final static Integer ACCURACY = 75;
+    protected final static Integer CANNON_DAMAGE = 1;
 
     public BritishShip (Integer posX, Integer posY, Integer id, String direction)
     {
@@ -66,7 +67,49 @@ public class BritishShip extends Ship{
 
 
 
-    public void shipAttack() {
+    @Override
+    public void shipAttack(ArrayList<Ship> ships) {
+        Random random = new Random();
+        ArrayList<Ship> targets = getShipsInRange(ships, 1);
+        if (targets.isEmpty())
+            return;
+
+        Ship targetShip = targets.get(random.nextInt(targets.size()));
+        Integer DAMAGE = calculateDamage();
+        System.out.println("Statek" + getId() + "zapierdolił statek" + targetShip.getId() + "i wyjebał mu za" + DAMAGE);
+        targetShip.recieveAttack(DAMAGE);
     }
 
+    private ArrayList<Ship> getShipsInRange(ArrayList<Ship> ships, Integer range){
+        ArrayList<Ship> targets = new ArrayList<>();
+        for (Ship ship : ships)
+        {
+            if (ship != this && ship instanceof PirateShip)
+            {
+                Integer distanceX = Math.abs(ship.getPosX() - getPosX());
+                Integer distanceY = Math.abs(ship.getPosY() - getPosY());
+                if(distanceY <= range && distanceX <= range)
+                    targets.add(ship);
+            }
+        }
+        return targets;
+    }
+
+
+    public void recieveAttack(Integer DAMAGE) {
+        HEALTH -= DAMAGE;
+    }
+
+    public Integer calculateDamage(){
+
+        Random random = new Random();
+        Integer isHit = random.nextInt(101);
+        if (isHit <= ACCURACY)
+            return CANNON_DAMAGE;
+        else return 0;
+    }
+
+    public Integer getHEALTH() {
+        return HEALTH;
+    }
 }

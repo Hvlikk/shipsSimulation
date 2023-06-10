@@ -33,7 +33,7 @@ public abstract class Ship {
         return map[newX][newY] == 0 && !isCollision(newX, newY, ships);
     }
 
-    public abstract void shipAttack();
+    public abstract void shipAttack(ArrayList<Ship> ships);
 
     public abstract void shipMovement(Integer map[][], ArrayList<Ship> ships);
 
@@ -53,5 +53,10 @@ public abstract class Ship {
         this.posY = posY;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    protected abstract void recieveAttack(Integer damage);
 
 }

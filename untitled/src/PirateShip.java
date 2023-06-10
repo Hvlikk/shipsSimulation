@@ -1,9 +1,10 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class PirateShip extends Ship{
-    private final static Integer HEALTH = 1;
+    private Integer HEALTH = 1;
     private final static Integer MOVEMENT = 2;
     private final static Integer ACCURACY = 50;
     private final static Integer CANNON_DAMAGE = 2;
@@ -47,7 +48,6 @@ public class PirateShip extends Ship{
         List<String> availableDirections = getAvailableDirections();
         Random random = new Random();
 
-
         while (!availableDirections.isEmpty()) {
             Integer newX = getPosX();
             Integer newY = getPosY();
@@ -79,7 +79,7 @@ public class PirateShip extends Ship{
                 map[getPosY()][getPosX()] = 0;
                 setPosX(newX);
                 setPosY(newY);
-                map[getPosY()][getPosX()] = 1;
+                map[getPosY()][getPosX()] = 2;
                 break;
             } else {
                 availableDirections.remove(direction);
@@ -90,13 +90,53 @@ public class PirateShip extends Ship{
         }
     }
 
-    public void shipAttack() {
+    public void shipAttack(ArrayList<Ship> ships) {
+        Random random = new Random();
+        ArrayList<Ship> targets = getShipsInRange(ships, 1);
+        if (targets.isEmpty())
+            return;
+
+        Ship targetShip = targets.get(random.nextInt(targets.size()));
+        Integer DAMAGE = calculateDamage();
+        System.out.println("Statek" + getId() + "zapierdolił statek" + targetShip.getId() + "i wyjebał mu za" + DAMAGE);
+        targetShip.recieveAttack(DAMAGE);
     }
 
+    private ArrayList<Ship> getShipsInRange(ArrayList<Ship> ships, Integer range){
+        ArrayList<Ship> targets = new ArrayList<>();
+        for (Ship ship : ships)
+        {
+            if (ship != this && ship instanceof PirateShip)
+            {
+                Integer distanceX = Math.abs(ship.getPosX() - getPosX());
+                Integer distanceY = Math.abs(ship.getPosY() - getPosY());
+                if(distanceY <= range && distanceX <= range)
+                    targets.add(ship);
+            }
+        }
+        return targets;
+    }
+
+
+    public void recieveAttack(Integer DAMAGE) {
+        HEALTH -= DAMAGE;
+    }
+
+
+    public Integer calculateDamage(){
+        Random random = new Random();
+        Integer isHit = random.nextInt(101);
+        if (isHit <= ACCURACY)
+            return CANNON_DAMAGE;
+        else return 0;
+    }
 
     public String getDirection()
     {
         return direction;
     }
 
+    public Integer getHEALTH() {
+        return HEALTH;
+    }
 }
