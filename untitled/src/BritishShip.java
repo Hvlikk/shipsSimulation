@@ -110,7 +110,7 @@ public class BritishShip extends Ship{
         else return 0;
     }
 
-    public Integer getHEALTH() {
+    public Integer getHEALTH(){
         return HEALTH;
     }
 }

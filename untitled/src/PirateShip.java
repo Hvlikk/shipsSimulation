@@ -107,7 +107,7 @@ public class PirateShip extends Ship{
         ArrayList<Ship> targets = new ArrayList<>();
         for (Ship ship : ships)
         {
-            if (ship != this && ship instanceof PirateShip)
+            if (ship != this && ship instanceof BritishShip)
             {
                 Integer distanceX = Math.abs(ship.getPosX() - getPosX());
                 Integer distanceY = Math.abs(ship.getPosY() - getPosY());
