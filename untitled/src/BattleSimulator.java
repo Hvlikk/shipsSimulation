@@ -56,9 +56,10 @@ public class BattleSimulator {
 
     public void simulateBattle() {
         Boolean battleInProgress = true;
-
+        int k = 0;
         while(battleInProgress){
-            Integer k = 0;
+
+            k += 1;
             System.out.println("================");
             System.out.println("Tura numer: " + k);
             System.out.println("================");
@@ -82,6 +83,11 @@ public class BattleSimulator {
 
     public void displaySimulationResult()
     {
+        System.out.println("=================================");
+        System.out.println("PODGLĄD MAPY PO ZAKOŃCZENIU BITWY");
+        System.out.println("=================================");
+        showMap();
+        System.out.println("=================================");
         int britishShipsRemaining = 0;
         int pirateShipsRemaining = 0;
 
