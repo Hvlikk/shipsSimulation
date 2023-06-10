@@ -91,6 +91,9 @@ public class PirateShip extends Ship{
     }
 
     public void shipAttack(ArrayList<Ship> ships) {
+        if (HEALTH <= 0)
+        return;
+
         Random random = new Random();
         ArrayList<Ship> targets = getShipsInRange(ships, 1);
         if (targets.isEmpty())
