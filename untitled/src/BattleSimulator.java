@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 public class BattleSimulator {
     private final Integer mapHeight;
@@ -100,6 +101,9 @@ public class BattleSimulator {
         System.out.println("Wynik symulacji:");
         System.out.println("Statki brytyjskie pozostałe: " + britishShipsRemaining);
         System.out.println("Statki pirackie pozostałe: " + pirateShipsRemaining);
+        System.out.println("==================================");
+        System.out.println("MAPA PO ZAKOŃCZENIU BITWY");
+        System.out.println("==================================");
         showMap();
 
         if (britishShipsRemaining == 0) {
