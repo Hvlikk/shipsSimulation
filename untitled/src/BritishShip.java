@@ -82,6 +82,11 @@ public class BritishShip extends Ship{
         targetShip.recieveAttack(DAMAGE);
         System.out.println("Statek brytyjski " + getId() + " zaatakował statek piratów " + targetShip.getId() + " i zadał mu " + DAMAGE);
         System.out.println("HP statku piratów po ataku: " + targetShip.getHEALTH());
+        if (targetShip.getHEALTH() <= 0)
+        {
+            System.out.println("Statek piracki3" +
+                    " " + targetShip.getId() + " został zestrzelony.");
+        }
     }
 
     private ArrayList<Ship> getShipsInRange(ArrayList<Ship> ships, Integer range){

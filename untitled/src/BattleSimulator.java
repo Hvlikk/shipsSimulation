@@ -5,6 +5,7 @@ public class BattleSimulator {
     private final Integer mapWidth;
     private char map[][];
     private ArrayList<Ship> ships;
+    public Integer TurnCount = 0;
 
 
     public BattleSimulator(Integer mapWidth, Integer mapHeight, ArrayList<Ship> ships, char map[][]) {
@@ -56,18 +57,21 @@ public class BattleSimulator {
 
     public void simulateBattle() {
         Boolean battleInProgress = true;
-
         while(battleInProgress){
-            Integer k = 0;
+            TurnCount++;
             System.out.println("================");
-            System.out.println("Tura numer: " + k);
+            System.out.println("Tura numer: " + TurnCount);
             System.out.println("================");
-            showMap();
+
 
             for (Ship ship : ships) {
                 ship.shipMovement(map, ships);
+            }
+            showMap();
+            for (Ship ship : ships) {
                 ship.shipAttack(ships);
             }
+
             removeDestroyedShips(map);
 
             if(checkEndingCondition()){
@@ -75,6 +79,7 @@ public class BattleSimulator {
             }
             System.out.println("================");
             System.out.println("KONIEC TURY");
+
         }
 
         displaySimulationResult();
@@ -95,11 +100,13 @@ public class BattleSimulator {
         System.out.println("Wynik symulacji:");
         System.out.println("Statki brytyjskie pozostałe: " + britishShipsRemaining);
         System.out.println("Statki pirackie pozostałe: " + pirateShipsRemaining);
+        showMap();
 
-        if (britishShipsRemaining > pirateShipsRemaining) {
-            System.out.println("Zwycięstwo brytyjczyków!");
-        } else {
+        if (britishShipsRemaining == 0) {
             System.out.println("Zwycięstwo piratów!");
+        } else {
+            System.out.println("Zwycięstwo brytyjczyków!");
         }
+        System.out.println("Ilość tur: " + TurnCount);
     }
 }
