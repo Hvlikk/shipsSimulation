@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.List;
 
 public class BritishShip extends Ship{
-    private final static Integer HEALTH = 2;
+    private Integer HEALTH = 2;
     private final static Integer MOVEMENT = 1;
     private final static Integer ACCURACY = 75;
     private final static Integer CANNON_DAMAGE = 1;
@@ -34,20 +34,39 @@ public class BritishShip extends Ship{
     }
 
     @Override
-    public void shipMovement(Integer map[][], ArrayList<Ship> ships)
-    {
+    public void shipMovement(Integer map[][], ArrayList<Ship> ships) {
+        List<String> availableDirections = getAvailableDirections();
+        Random random = new Random();
 
-        switch (direction) {
-            case "North" -> posY += MOVEMENT;
-            case "South" -> posY -= MOVEMENT;
-            case "West" -> posX -= MOVEMENT;
-            default -> posX += MOVEMENT;
+        while (!availableDirections.isEmpty()) {
+            Integer newX = getPosX();
+            Integer newY = getPosY();
+
+            switch (direction) {
+                case "North" -> newY += MOVEMENT;
+                case "South" -> newY -= MOVEMENT;
+                case "West" -> newX -= MOVEMENT;
+                case "East" -> newX += MOVEMENT;
+            }
+
+            if (isValidMove(newX, newY, map, ships)) {
+                map[getPosY()][getPosX()] = 0;
+                setPosX(newX);
+                setPosY(newY);
+                map[getPosY()][getPosX()] = 1;
+                break;
+            } else {
+                availableDirections.remove(direction);
+                if (!availableDirections.isEmpty())
+                    direction = availableDirections.get(random.nextInt(availableDirections.size()));
+                else return;
+            }
         }
-
     }
 
-    @Override
+
+
     public void shipAttack() {
-
     }
+
 }

@@ -2,10 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-///Pirates movement = 2;
-//Pirates accuracy = 50%
-
-
 public class PirateShip extends Ship{
     private final static Integer HEALTH = 1;
     private final static Integer MOVEMENT = 2;
@@ -42,33 +38,65 @@ public class PirateShip extends Ship{
         availableDirections.add("North-West");
         availableDirections.add("South-West");
         availableDirections.add("South-East");
+        availableDirections.remove(getDirection());
         return availableDirections;
     }
 
     @Override
-    public void shipMovement(Integer map[][], ArrayList<Ship> ships)
-    {
-        switch (direction) {
-            case "North" -> posY += MOVEMENT;
-            case "South" -> posY -= MOVEMENT;
-            case "West" -> posX -= MOVEMENT;
-            case "East" -> posX += MOVEMENT;
-            case "North-East" -> {
-                posX += MOVEMENT;
-                posY += MOVEMENT;
+    public void shipMovement(Integer map[][], ArrayList<Ship> ships) {
+        List<String> availableDirections = getAvailableDirections();
+        Random random = new Random();
+
+
+        while (!availableDirections.isEmpty()) {
+            Integer newX = getPosX();
+            Integer newY = getPosY();
+
+            switch (direction) {
+                case "North" -> newY += MOVEMENT;
+                case "South" -> newY -= MOVEMENT;
+                case "West" -> newX -= MOVEMENT;
+                case "East" -> newX += MOVEMENT;
+                case "North-East" -> {
+                    newX += MOVEMENT;
+                    newY += MOVEMENT;
+                }
+                case "North-West" -> {
+                    newX -= MOVEMENT;
+                    newY += MOVEMENT;
+                }
+                case "South-East" -> {
+                    newX += MOVEMENT;
+                    newY -= MOVEMENT;
+                }
+                case "South-West" -> {
+                    newX -= MOVEMENT;
+                    newY -= MOVEMENT;
+                }
             }
-            case "North-West" -> {
-                posX -= MOVEMENT;
-                posY += MOVEMENT;
-            }
-            case "South-East" -> {
-                posX += MOVEMENT;
-                posY -= MOVEMENT;
-            }
-            default -> {
-                posX -= MOVEMENT;
-                posY -= MOVEMENT;
+
+            if (isValidMove(newX, newY, map, ships)) {
+                map[getPosY()][getPosX()] = 0;
+                setPosX(newX);
+                setPosY(newY);
+                map[getPosY()][getPosX()] = 1;
+                break;
+            } else {
+                availableDirections.remove(direction);
+                if(!availableDirections.isEmpty())
+                    direction = availableDirections.get(random.nextInt(availableDirections.size()));
+                else return;
             }
         }
     }
+
+    public void shipAttack() {
+    }
+
+
+    public String getDirection()
+    {
+        return direction;
+    }
+
 }

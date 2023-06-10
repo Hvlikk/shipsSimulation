@@ -13,7 +13,28 @@ public abstract class Ship {
         this.posY = posY;
         this.direction = direction;
     }
+
+    public Boolean isCollision(Integer newX, Integer newY, ArrayList<Ship> ships){
+        for (Ship ship : ships){
+            if (ship != this && ship.getPosX() == newX && ship.getPosY() == newY)
+                return true;
+        }
+        return false;
+    }
+
+    public Boolean isValidMove(Integer newX, Integer newY, Integer map[][], ArrayList<Ship> ships)
+    {
+        Integer mapWidth = map[0].length;
+        Integer mapHeight = map.length;
+
+        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight)
+            return false;
+
+        return map[newX][newY] == 0 && !isCollision(newX, newY, ships);
+    }
+
     public abstract void shipAttack();
+
     public abstract void shipMovement(Integer map[][], ArrayList<Ship> ships);
 
     public void setPosX(Integer posX) {
