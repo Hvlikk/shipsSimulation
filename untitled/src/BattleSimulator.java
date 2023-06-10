@@ -1,5 +1,4 @@
 import java.lang.reflect.Array;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 public class BattleSimulator {
     private final Integer mapHeight;
