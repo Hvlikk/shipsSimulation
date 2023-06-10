@@ -84,7 +84,7 @@ public class BritishShip extends Ship{
         System.out.println("HP statku piratów po ataku: " + targetShip.getHEALTH());
         if (targetShip.getHEALTH() <= 0)
         {
-            System.out.println("Statek piracki3" +
+            System.out.println("Statek piracki" +
                     " " + targetShip.getId() + " został zestrzelony.");
         }
     }

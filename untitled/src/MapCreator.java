@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class MapCreator {
     private ArrayList<Ship> ships;
+    private ArrayList<Iceberg> icebergs;
     private final char map[][];
     private final Integer mapWidth;
     private final Integer mapHeight;
@@ -15,6 +16,7 @@ public class MapCreator {
         this.mapHeight = mapHeight;
         this.piratesStartCount = piratesStartCount;
         this.britishShipsStartCount = britishShipsStartCount;
+        icebergs = new ArrayList<>();
         ships = new ArrayList<>();
         map = new char[mapHeight][mapWidth];
     }
@@ -36,24 +38,31 @@ public class MapCreator {
         return map;
     }
 
-
-    public void showMap()
-    {
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++)
-                System.out.print(map[i][j]);
-            System.out.println(" ");
-        }
-    }
-
     public char[][] getMap() {
         return map;
     }
 
+    public ArrayList<Iceberg> createIcebergs(Integer icebergCount, char map[][]) {
+        Random random = new Random();
+        for (int i = 1; i <= icebergCount; i++)
+        {
+            Integer posX;
+            Integer posY;
+            boolean icebergCreated = false;
 
+            while (!icebergCreated){
+                posX = random.nextInt(map[0].length);
+                posY = random.nextInt(map.length);
 
-    public void deleteDestroyedShips(Integer id){
-
+                if(map[posY][posX] == (char) 32)
+                {
+                    icebergs.add(new Iceberg(i, posX, posY));
+                    map[posY][posX] = 'I';
+                    icebergCreated = true;
+                }
+            }
+        }
+        return icebergs;
     }
 
     public ArrayList<Ship> createShips(Integer britishShipsStartCount, Integer piratesStartCount, char map[][])

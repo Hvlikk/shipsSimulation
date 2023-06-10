@@ -14,6 +14,8 @@ public class Main {
 
         System.out.println("Podaj liczbe statkow brytyjskich: ");
         Integer britishShipsCount = in.nextInt();
+        System.out.println("Podaj liczbe gór lodowych: ");
+        Integer icebergsCount = in.nextInt();
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
 
@@ -22,7 +24,8 @@ public class Main {
         System.out.println("=======================================");
         char[][] map = mapCreator.createMap(mapMaxX, mapMaxY);
         ArrayList<Ship> ships = mapCreator.createShips(britishShipsCount, piratesCount, mapCreator.getMap());
-        BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, map);
+        ArrayList<Iceberg> icebergs = mapCreator.createIcebergs(icebergsCount, mapCreator.getMap());
+        BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, icebergs, map);
         battleSimulator.simulateBattle();
         in.close();
     }
