@@ -1,21 +1,36 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.List;
 
 public class BritishShip extends Ship{
+    private final static Integer HEALTH = 2;
+    private final static Integer MOVEMENT = 1;
+    private final static Integer ACCURACY = 75;
+    private final static Integer CANNON_DAMAGE = 1;
 
-    public BritishShip (Integer id, Integer posX, Integer posY, Integer attack, String direction, Integer hp, Integer movement)
+    public BritishShip (Integer posX, Integer posY, Integer id, String direction)
     {
-        super(id, posX, posY, attack, direction, 2, 1);
-        this.movement = 1;
+        super(posX, posY, id, direction);
         setRandomDirection();
     }
 
+    public List<String> getAvailableDirections() {
+        List<String> availableDirections = new ArrayList<>();
+        availableDirections.add("North");
+        availableDirections.add("South");
+        availableDirections.add("East");
+        availableDirections.add("West");
+        return availableDirections;
+    }
     private void setRandomDirection()
     {
-        String[] directions = {"North", "East", "West", "South"};
+        ArrayList<String> directions = new ArrayList<>();
+        directions.add("North");
+        directions.add("South");
+        directions.add("East");
+        directions.add("West");
         Random random = new Random();
-        int index = random.nextInt(directions.length);
-        direction = directions[index];
+        this.direction = directions.get(random.nextInt(directions.size()));
     }
 
     @Override
@@ -23,11 +38,16 @@ public class BritishShip extends Ship{
     {
 
         switch (direction) {
-            case "North" -> posY += movement;
-            case "South" -> posY -= movement;
-            case "West" -> posX -= movement;
-            default -> posX += movement;
+            case "North" -> posY += MOVEMENT;
+            case "South" -> posY -= MOVEMENT;
+            case "West" -> posX -= MOVEMENT;
+            default -> posX += MOVEMENT;
         }
+
+    }
+
+    @Override
+    public void shipAttack() {
 
     }
 }

@@ -63,7 +63,7 @@ public class MapCreator {
 
                 if(map[posY][posX] == 0)
                 {
-                    ships.add(new PirateShip(i, posX, posY, 1, null, 1, 2));
+                    ships.add(new PirateShip(posX, posY, i, null));
                     map[posY][posX] = 2;
                     shipCreated = true;
                 }
@@ -82,7 +82,7 @@ public class MapCreator {
 
                 if(map[posY][posX] == 0)
                 {
-                    ships.add(new BritishShip(i, posX, posY, null, null, null, null));
+                    ships.add(new BritishShip(posX, posY, i, null));
                     map[posY][posX] = 1;
                     shipCreated = true;
                 }
