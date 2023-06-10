@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 public class BattleSimulator {
     private final Integer mapHeight;
     private final Integer mapWidth;
@@ -32,10 +33,9 @@ public class BattleSimulator {
                 System.out.print(map[i][j]);
             System.out.println(" ");
         }
-        System.out.println("========");
     }
 
-    private Boolean checkEndingCondition(){
+    public Boolean checkEndingCondition(){
         Boolean britishShipsRemaining = false;
         Boolean piratesShipRemaining = false;
 
@@ -63,12 +63,12 @@ public class BattleSimulator {
             System.out.println("================");
             System.out.println("Tura numer: " + k);
             System.out.println("================");
-            showMap();
 
             for (Ship ship : ships) {
                 ship.shipMovement(map, ships);
                 ship.shipAttack(ships);
             }
+            showMap();
             removeDestroyedShips(map);
 
             if(checkEndingCondition()){
@@ -76,6 +76,11 @@ public class BattleSimulator {
             }
             System.out.println("================");
             System.out.println("KONIEC TURY");
+            try {
+                Thread.sleep(1000);
+            }   catch (InterruptedException e){
+                e.printStackTrace();
+            }
         }
 
         displaySimulationResult();

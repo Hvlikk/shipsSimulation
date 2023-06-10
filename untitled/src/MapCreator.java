@@ -98,8 +98,4 @@ public class MapCreator {
         }
         return ships;
     }
-
-    public ArrayList<Ship> getShips() {
-        return ships;
-    }
 }
