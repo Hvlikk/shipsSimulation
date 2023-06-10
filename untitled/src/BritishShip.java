@@ -35,7 +35,7 @@ public class BritishShip extends Ship{
     }
 
     @Override
-    public void shipMovement(Integer map[][], ArrayList<Ship> ships) {
+    public void shipMovement(char map[][], ArrayList<Ship> ships) {
         List<String> availableDirections = getAvailableDirections();
         Random random = new Random();
 
@@ -51,10 +51,10 @@ public class BritishShip extends Ship{
             }
 
             if (isValidMove(newX, newY, map, ships)) {
-                map[getPosY()][getPosX()] = 0;
+                map[getPosY()][getPosX()] = (char) 32;
                 setPosX(newX);
                 setPosY(newY);
-                map[getPosY()][getPosX()] = 1;
+                map[getPosY()][getPosX()] = 'B';
                 break;
             } else {
                 availableDirections.remove(direction);
@@ -76,7 +76,7 @@ public class BritishShip extends Ship{
 
         Ship targetShip = targets.get(random.nextInt(targets.size()));
         Integer DAMAGE = calculateDamage();
-        System.out.println("Statek" + getId() + "zapierdolił statek" + targetShip.getId() + "i wyjebał mu za" + DAMAGE);
+        System.out.println("Statek " + getId() + " zapierdolił statek " + targetShip.getId() + " i wyjebał mu za " + DAMAGE);
         targetShip.recieveAttack(DAMAGE);
     }
 

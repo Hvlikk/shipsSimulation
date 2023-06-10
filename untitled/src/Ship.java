@@ -22,20 +22,20 @@ public abstract class Ship {
         return false;
     }
 
-    public Boolean isValidMove(Integer newX, Integer newY, Integer map[][], ArrayList<Ship> ships)
+    public Boolean isValidMove(Integer newX, Integer newY, char map[][], ArrayList<Ship> ships)
     {
-        Integer mapWidth = map[0].length;
-        Integer mapHeight = map.length;
+        Integer mapWidth = map[0].length - 1;
+        Integer mapHeight = map.length - 1;
 
-        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight)
+        if (newX <= 0 || newX >= mapWidth || newY <= 0 || newY >= mapHeight)
             return false;
 
-        return map[newX][newY] == 0 && !isCollision(newX, newY, ships);
+        return map[newX][newY] == (char) 32 && !isCollision(newX, newY, ships);
     }
 
     public abstract void shipAttack(ArrayList<Ship> ships);
 
-    public abstract void shipMovement(Integer map[][], ArrayList<Ship> ships);
+    public abstract void shipMovement(char map[][], ArrayList<Ship> ships);
 
     public void setPosX(Integer posX) {
         this.posX = posX;

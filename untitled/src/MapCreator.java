@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MapCreator {
     private ArrayList<Ship> ships;
-    private final Integer map[][];
+    private final char map[][];
     private final Integer mapWidth;
     private final Integer mapHeight;
     private Integer piratesStartCount;
@@ -16,14 +16,22 @@ public class MapCreator {
         this.piratesStartCount = piratesStartCount;
         this.britishShipsStartCount = britishShipsStartCount;
         ships = new ArrayList<>();
-        map = new Integer[mapHeight][mapWidth];
+        map = new char[mapHeight][mapWidth];
     }
 
-    public Integer[][] createMap(Integer mapHeight, Integer mapWidth){
+    public char[][] createMap(Integer mapHeight, Integer mapWidth){
         for (int i = 0; i < mapHeight; i++)
         {
             for(int j = 0 ; j < mapWidth; j++)
-                map[i][j] = 0;
+                map[i][j] = (char) 32;
+
+            for(int j = 0 ; j < mapWidth; j++)
+            {
+                map[j][0] = '*';
+                map[j][mapWidth-1] = '*';
+                map[0][j] = '*';
+                map[mapHeight-1][j] = '*';
+            }
         }
         return map;
     }
@@ -38,7 +46,7 @@ public class MapCreator {
         }
     }
 
-    public Integer[][] getMap() {
+    public char[][] getMap() {
         return map;
     }
 
@@ -48,7 +56,7 @@ public class MapCreator {
 
     }
 
-    public ArrayList<Ship> createShips(Integer britishShipsStartCount, Integer piratesStartCount, Integer map[][])
+    public ArrayList<Ship> createShips(Integer britishShipsStartCount, Integer piratesStartCount, char map[][])
     {
         Random random = new Random();
         for (int i = 1; i <= piratesStartCount; i++)
@@ -61,10 +69,10 @@ public class MapCreator {
                 posX = random.nextInt(map[0].length);
                 posY = random.nextInt(map.length);
 
-                if(map[posY][posX] == 0)
+                if(map[posY][posX] == (char) 32)
                 {
                     ships.add(new PirateShip(posX, posY, i, null));
-                    map[posY][posX] = 2;
+                    map[posY][posX] = 'P';
                     shipCreated = true;
                 }
             }
@@ -80,10 +88,10 @@ public class MapCreator {
                 posX = random.nextInt(map[0].length);
                 posY = random.nextInt(map.length);
 
-                if(map[posY][posX] == 0)
+                if(map[posY][posX] == (char) 32)
                 {
                     ships.add(new BritishShip(posX, posY, i, null));
-                    map[posY][posX] = 1;
+                    map[posY][posX] = 'B';
                     shipCreated = true;
                 }
             }
