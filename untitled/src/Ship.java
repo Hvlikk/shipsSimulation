@@ -57,6 +57,8 @@ public abstract class Ship {
         return id;
     }
 
+    public abstract Integer getHEALTH();
+
     protected abstract void recieveAttack(Integer damage);
 
 }

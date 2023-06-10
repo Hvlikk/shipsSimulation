@@ -76,8 +76,9 @@ public class BritishShip extends Ship{
 
         Ship targetShip = targets.get(random.nextInt(targets.size()));
         Integer DAMAGE = calculateDamage();
-        System.out.println("Statek " + getId() + " zapierdolił statek " + targetShip.getId() + " i wyjebał mu za " + DAMAGE);
         targetShip.recieveAttack(DAMAGE);
+        System.out.println("Statek brytyjski " + getId() + " zaatakował statek piratów " + targetShip.getId() + " i zadał mu " + DAMAGE);
+        System.out.println("HP statku piratów po ataku: " + targetShip.getHEALTH());
     }
 
     private ArrayList<Ship> getShipsInRange(ArrayList<Ship> ships, Integer range){
