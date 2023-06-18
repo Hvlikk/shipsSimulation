@@ -122,7 +122,6 @@ public class BritishShip extends Ship{
     }
 
     public Integer calculateDamage(){
-
         Random random = new Random();
         Integer isHit = random.nextInt(101);
         if (isHit <= ACCURACY)

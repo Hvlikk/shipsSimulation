@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Podaj wymiary mapy (X,Y): ");
+        System.out.println("Podaj wymiar X mapy: ");
         Scanner in = new Scanner(System.in);
         Integer mapMaxX = in.nextInt() + 2;
-        Integer mapMaxY = mapMaxX;
+        System.out.println("Podaj wymiar Y mapy: ");
+        Integer mapMaxY = in.nextInt() + 2;
         boolean RunProgram;
 
         System.out.println("Podaj liczbe piratow :");
@@ -27,7 +28,7 @@ public class Main {
         RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount, thunders);
 
         if(RunProgram == true) {
-            System.out.println("Statki brytyjskie = 1, statki piratow = 2");
+            System.out.println("Statki brytyjskie = B, statki piratow = P, góry lodowe = I");
             System.out.println("Podgląd mapy przed rozpoczęciem bitwy:");
             System.out.println("=======================================");
 
