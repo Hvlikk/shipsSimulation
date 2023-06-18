@@ -2,6 +2,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 public class BattleSimulator {
+    public static final String COLOR_BLUE = "\u001B[34m";
+    public static final String COLOR_RED = "\u001B[31m";
+    public static final String COLOR_RESET = "\u001B[0m";
+    public static final String COLOR_GREEN = "\u001B[32m";
     private final Integer mapHeight;
     private final Integer mapWidth;
     private char map[][];
@@ -36,7 +40,6 @@ public class BattleSimulator {
                 System.out.print(map[i][j]);
             System.out.println(" ");
         }
-        System.out.println("========");
     }
 
     private Boolean checkEndingCondition(){
@@ -96,9 +99,9 @@ public class BattleSimulator {
         Boolean battleInProgress = true;
         while(battleInProgress) {
             TurnCount++;
-            System.out.println("================");
-            System.out.println("Tura numer: " + TurnCount);
-            System.out.println("================");
+            System.out.println("==========================================================");
+            System.out.println("TOUR NUMBER: " + COLOR_RED + TurnCount + COLOR_RESET);
+            System.out.println("==========================================================");
 
             for (Ship ship : ships) {
                 ship.shipMovement(map, ships);
@@ -107,6 +110,7 @@ public class BattleSimulator {
             for (Ship ship : ships) {
                 ship.shipAttack(ships);
             }
+            System.out.println("=======" + COLOR_GREEN + " *BATTLE LOG* " + COLOR_RESET + "=======");
             Thunderstorm(turns, thunders, TurnCount, map);
             printCasualities(ships);
             removeDestroyedShips(map);
@@ -114,9 +118,8 @@ public class BattleSimulator {
             if (checkEndingCondition()) {
                 battleInProgress = false;
             }
-            System.out.println("================");
-            System.out.println("KONIEC TURY");
-
+            System.out.println("=======" + COLOR_GREEN + " *END OF TURN* " + COLOR_RESET + "=======");
+            System.out.println(COLOR_GREEN + "==========================================================" + COLOR_RESET);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
