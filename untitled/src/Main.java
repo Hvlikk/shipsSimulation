@@ -9,6 +9,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         Integer mapMaxX = in.nextInt() + 2;
         Integer mapMaxY = mapMaxX;
+        Float thunder = (float) (mapMaxX / 3);
         boolean RunProgram;
 
         System.out.println("Podaj liczbe piratow :");
@@ -20,11 +21,11 @@ public class Main {
         Integer icebergsCount = in.nextInt();
         System.out.println("Podaj częstotliwość burzy: ");
         Integer turns = in.nextInt();
-        System.out.println("Podaj ilosć piorunów w burzy (max 3): ");
+        System.out.println("Podaj ilosć piorunów w burzy (max " + thunder.intValue() + "):");
         Integer thunders = in.nextInt();
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
-        RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount, thunders, turns);
+        RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount, thunders, turns, thunder);
 
         if(RunProgram == true) {
             System.out.println("Statki brytyjskie = B, statki piratow = P, góry lodowe = I");
