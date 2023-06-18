@@ -5,11 +5,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Podaj wymiar X mapy: ");
+        System.out.println("Podaj wymiar (X,Y) mapy - mapa to kwadrat: ");
         Scanner in = new Scanner(System.in);
         Integer mapMaxX = in.nextInt() + 2;
-        System.out.println("Podaj wymiar Y mapy: ");
-        Integer mapMaxY = in.nextInt() + 2;
+        Integer mapMaxY = mapMaxX;
         boolean RunProgram;
 
         System.out.println("Podaj liczbe piratow :");
