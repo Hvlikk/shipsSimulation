@@ -117,8 +117,7 @@ public class MapCreator {
         {
             if (thunders > thunder)
                 return false;
-            if (turns < 1)
-                return false;
+
 
             Integer mapsize;
             mapsize = (mapMaxX-2) * (mapMaxX-2);
@@ -128,4 +127,5 @@ public class MapCreator {
                 return false;
             else return true;
         }
+
 }

@@ -63,19 +63,21 @@ public class BattleSimulator {
 
     public void Thunderstorm (Integer turns, Integer thunders, Integer turnCount, char map[][])
     {
-        Random random = new Random();
-        if (turnCount % turns == 0) {
-            for (int i = 0; i < thunders; i++ ){
-            Integer XHit = random.nextInt(map[0].length);
-            Integer YHit = random.nextInt(map.length);
+        if (turns > 0) {
+            Random random = new Random();
+            if (turnCount % turns == 0) {
+                for (int i = 0; i < thunders; i++) {
+                    Integer XHit = random.nextInt(map[0].length);
+                    Integer YHit = random.nextInt(map.length);
 
-                for (Ship ship : ships) {
-                    if (ship.getPosX() == XHit && ship.getPosY() == YHit) {
-                        if (ship.getHEALTH() > 0) {
-                            Integer health = ship.getHEALTH();
-                            ship.recieveAttack(health);
-                            System.out.println("Burza trafiła statek " + ship.getName() + " " + ship.getId() + " i go zatopiła. ");
-                            map[XHit][YHit] = (char) 32;
+                    for (Ship ship : ships) {
+                        if (ship.getPosX() == XHit && ship.getPosY() == YHit) {
+                            if (ship.getHEALTH() > 0) {
+                                Integer health = ship.getHEALTH();
+                                ship.recieveAttack(health);
+                                System.out.println("Burza trafiła statek " + ship.getName() + " " + ship.getId() + " i go zatopiła. ");
+                                map[XHit][YHit] = (char) 32;
+                            }
                         }
                     }
                 }
@@ -100,7 +102,7 @@ public class BattleSimulator {
         while(battleInProgress) {
             TurnCount++;
             System.out.println("==========================================================");
-            System.out.println("TOUR NUMBER: " + COLOR_RED + TurnCount + COLOR_RESET);
+            System.out.println("ROUND NUMBER: " + COLOR_RED + TurnCount + COLOR_RESET);
             System.out.println("==========================================================");
 
             for (Ship ship : ships) {
