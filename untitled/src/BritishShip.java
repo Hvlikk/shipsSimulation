@@ -82,11 +82,12 @@ public class BritishShip extends Ship{
             return;
 
         Ship targetShip = targets.get(random.nextInt(targets.size()));
-        Integer DAMAGE = calculateDamage();
-        targetShip.recieveAttack(DAMAGE);
-        System.out.println(COLOR_BLUE + "Statek brytyjski " + COLOR_GREEN + getId() + COLOR_RESET + " zaatakował" + COLOR_RED + " statek piratów " + COLOR_GREEN + targetShip.getId() + COLOR_RESET + " i zadał mu " + COLOR_GREEN + DAMAGE + COLOR_RESET + " obrażeń.");
-        System.out.println(COLOR_RED + "HP statku piratów po ataku: " + COLOR_GREEN + targetShip.getHEALTH() + COLOR_RESET);
-        if (targetShip.getHEALTH() <= 0)
+        if (targetShip.getHEALTH() > 0) {
+            Integer DAMAGE = calculateDamage();
+            targetShip.recieveAttack(DAMAGE);
+            System.out.println(COLOR_BLUE + "Statek brytyjski " + COLOR_GREEN + getId() + COLOR_RESET + " zaatakował" + COLOR_RED + " statek piratów " + COLOR_GREEN + targetShip.getId() + COLOR_RESET + " i zadał mu " + COLOR_GREEN + DAMAGE + COLOR_RESET + " obrażeń.");
+            System.out.println(COLOR_RED + "HP statku piratów po ataku: " + COLOR_GREEN + targetShip.getHEALTH() + COLOR_RESET);
+        }
         {
             System.out.println("Statek piracki" +
                     " " + targetShip.getId() + " został zestrzelony.");

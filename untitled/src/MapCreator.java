@@ -99,7 +99,7 @@ public class MapCreator {
             while (!shipCreated){
                 posX = random.nextInt(map[0].length);
                 posY = random.nextInt(map.length);
-                MoveSpeed = random.nextInt(301);
+                MoveSpeed = random.nextInt(201);
 
                 if(map[posY][posX] == (char) 32)
                 {
@@ -109,6 +109,8 @@ public class MapCreator {
                 }
             }
         }
+        Ship.sortShipsByMoveSpeed(ships);
+
         return ships;
     }
         public static boolean CheckMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount)

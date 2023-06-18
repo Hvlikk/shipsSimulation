@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public abstract class Ship {
     protected Integer id;
@@ -57,6 +58,12 @@ public abstract class Ship {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getMoveSpeed() { return MoveSpeed; }
+
+    public static void sortShipsByMoveSpeed(ArrayList<Ship> ships) {
+        ships.sort(Comparator.comparingInt(Ship::getMoveSpeed));
     }
 
     public abstract Integer getHEALTH();
