@@ -58,32 +58,35 @@ public class BattleSimulator {
         return true;
     }
 
-    public void Thunderstorm (Integer turns, Integer turnCount, char map[][])
+    public void Thunderstorm (Integer turns, Integer thunders, Integer turnCount, char map[][])
     {
         Random random = new Random();
         if (turnCount % turns == 0) {
+            for (int i = 0; i < thunders; i++ ){
             Integer XHit = random.nextInt(map[0].length);
             Integer YHit = random.nextInt(map.length);
 
-            for (Ship ship : ships) {
-                if (ship.getPosX() == XHit && ship.getPosY() == YHit) {
-                    Integer health = ship.getHEALTH();
-                    ship.recieveAttack(health);
-                    System.out.println("Burza trafiła statek " + ship.getName() + " " + ship.getId() + " i go zatopiła. " );
+                for (Ship ship : ships) {
+                    if (ship.getPosX() == XHit && ship.getPosY() == YHit) {
+                        if (ship.getHEALTH() > 0) {
+                            Integer health = ship.getHEALTH();
+                            ship.recieveAttack(health);
+                            System.out.println("Burza trafiła statek " + ship.getName() + " " + ship.getId() + " i go zatopiła. ");
+                            map[XHit][YHit] = (char) 32;
+                        }
+                    }
                 }
             }
         }
     }
 
-    public void simulateBattle(Integer turns) {
+    public void simulateBattle(Integer turns, Integer thunders) {
         Boolean battleInProgress = true;
         while(battleInProgress){
             TurnCount++;
-            Thunderstorm(turns, TurnCount, map);
             System.out.println("================");
             System.out.println("Tura numer: " + TurnCount);
             System.out.println("================");
-
 
             for (Ship ship : ships) {
                 ship.shipMovement(map, ships);
@@ -92,6 +95,7 @@ public class BattleSimulator {
             for (Ship ship : ships) {
                 ship.shipAttack(ships);
             }
+            Thunderstorm(turns,thunders, TurnCount, map);
 
             removeDestroyedShips(map);
 
@@ -131,11 +135,14 @@ public class BattleSimulator {
         System.out.println("==================================");
         showMap();
 
-        if (britishShipsRemaining == 0) {
-            System.out.println("Zwycięstwo piratów!");
-        } else {
+        if (britishShipsRemaining == 0 && pirateShipsRemaining == 0)
+            System.out.println("Wszystkie statki zostały zatopione przez burzę. ");
+
+            else if (britishShipsRemaining == 0) {
+                System.out.println("Zwycięstwo piratów!");
+            } else {
             System.out.println("Zwycięstwo brytyjczyków!");
-        }
-        System.out.println("Ilość tur: " + TurnCount);
+            }
+            System.out.println("Ilość tur: " + TurnCount);
     }
 }

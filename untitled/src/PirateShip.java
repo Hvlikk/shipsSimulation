@@ -49,6 +49,10 @@ public class PirateShip extends Ship{
 
     @Override
     public void shipMovement(char map[][], ArrayList<Ship> ships) {
+
+        if (HEALTH <= 0)
+            return;
+
         List<String> availableDirections = getAvailableDirections();
         Random random = new Random();
 

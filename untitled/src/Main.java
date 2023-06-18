@@ -20,9 +20,11 @@ public class Main {
         Integer icebergsCount = in.nextInt();
         System.out.println("Podaj częstotliwość burzy: ");
         Integer turns = in.nextInt();
+        System.out.println("Podaj ilosć piorunów w burzy (max 3): ");
+        Integer thunders = in.nextInt();
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
-        RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
+        RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount, thunders);
 
         if(RunProgram == true) {
             System.out.println("Statki brytyjskie = 1, statki piratow = 2");
@@ -33,11 +35,11 @@ public class Main {
             ArrayList<Ship> ships = mapCreator.createShips(britishShipsCount, piratesCount, mapCreator.getMap());
                 ArrayList<Iceberg> icebergs = mapCreator.createIcebergs(icebergsCount, mapCreator.getMap());
                 BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, icebergs, map);
-                battleSimulator.simulateBattle(turns);
+                battleSimulator.simulateBattle(turns, thunders);
                 in.close();
             }
             else {
-                System.out.println("Za duża ilość przedmiotów na mapie.");
+                System.out.println("Za duża ilość przedmiotów na mapie. / Za duża ilość piorunów. ");
             }
     }
 
