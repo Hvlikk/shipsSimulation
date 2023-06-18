@@ -24,7 +24,7 @@ public class Main {
         Integer thunders = in.nextInt();
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
-        RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount, thunders);
+        RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount, thunders, turns);
 
         if(RunProgram == true) {
             System.out.println("Statki brytyjskie = 1, statki piratow = 2");
