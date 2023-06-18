@@ -80,9 +80,21 @@ public class BattleSimulator {
         }
     }
 
+
+    public void printCasualities(ArrayList<Ship> ships){
+        for (Ship ship: ships)
+        {
+            if (ship.getHEALTH() <= 0)
+            {
+                System.out.println("Statek " + ship.getName() + " " + ship.getId() + " został zatopiony.");
+            }
+        }
+    }
+
+
     public void simulateBattle(Integer turns, Integer thunders) {
         Boolean battleInProgress = true;
-        while(battleInProgress){
+        while(battleInProgress) {
             TurnCount++;
             System.out.println("================");
             System.out.println("Tura numer: " + TurnCount);
@@ -95,11 +107,11 @@ public class BattleSimulator {
             for (Ship ship : ships) {
                 ship.shipAttack(ships);
             }
-            Thunderstorm(turns,thunders, TurnCount, map);
-
+            Thunderstorm(turns, thunders, TurnCount, map);
+            printCasualities(ships);
             removeDestroyedShips(map);
 
-            if(checkEndingCondition()){
+            if (checkEndingCondition()) {
                 battleInProgress = false;
             }
             System.out.println("================");
@@ -107,7 +119,7 @@ public class BattleSimulator {
 
             try {
                 Thread.sleep(1000);
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

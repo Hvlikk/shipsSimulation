@@ -91,10 +91,6 @@ public class BritishShip extends Ship{
             System.out.println(COLOR_BLUE + "Statek brytyjski " + COLOR_GREEN + getId() + COLOR_RESET + " zaatakował" + COLOR_RED + " statek piratów " + COLOR_GREEN + targetShip.getId() + COLOR_RESET + " i zadał mu " + COLOR_GREEN + DAMAGE + COLOR_RESET + " obrażeń.");
             System.out.println(COLOR_RED + "HP statku piratów po ataku: " + COLOR_GREEN + targetShip.getHEALTH() + COLOR_RESET);
         }
-        if (targetShip.getHEALTH() == 0)
-        {
-            System.out.println("Statek piracki" + " " + targetShip.getId() + " został zestrzelony.");
-        }
     }
 
     private ArrayList<Ship> getShipsInRange(ArrayList<Ship> ships, Integer range){
@@ -116,6 +112,7 @@ public class BritishShip extends Ship{
     public void recieveAttack(Integer DAMAGE) {
         HEALTH -= DAMAGE;
     }
+
 
     @Override
     public String getName()
