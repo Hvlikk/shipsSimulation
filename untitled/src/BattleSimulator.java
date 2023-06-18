@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 public class BattleSimulator {
     private final Integer mapHeight;
     private final Integer mapWidth;
@@ -57,10 +58,28 @@ public class BattleSimulator {
         return true;
     }
 
-    public void simulateBattle() {
+    public void Thunderstorm (Integer turns, Integer turnCount, char map[][])
+    {
+        Random random = new Random();
+        if (turnCount % turns == 0) {
+            Integer XHit = random.nextInt(map[0].length);
+            Integer YHit = random.nextInt(map.length);
+
+            for (Ship ship : ships) {
+                if (ship.getPosX() == XHit && ship.getPosY() == YHit) {
+                    Integer health = ship.getHEALTH();
+                    ship.recieveAttack(health);
+                    System.out.println("Burza trafiła statek " + ship.getName() + " " + ship.getId() + " i go zatopiła. " );
+                }
+            }
+        }
+    }
+
+    public void simulateBattle(Integer turns) {
         Boolean battleInProgress = true;
         while(battleInProgress){
             TurnCount++;
+            Thunderstorm(turns, TurnCount, map);
             System.out.println("================");
             System.out.println("Tura numer: " + TurnCount);
             System.out.println("================");

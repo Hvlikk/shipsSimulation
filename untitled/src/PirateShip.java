@@ -145,6 +145,12 @@ public class PirateShip extends Ship{
         else return 0;
     }
 
+    @Override
+    public String getName()
+    {
+        String name = "piracki";
+        return name;
+    }
     public String getDirection()
     {
         return direction;

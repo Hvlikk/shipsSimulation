@@ -18,6 +18,8 @@ public class Main {
         Integer britishShipsCount = in.nextInt();
         System.out.println("Podaj liczbe gór lodowych: ");
         Integer icebergsCount = in.nextInt();
+        System.out.println("Podaj częstotliwość burzy: ");
+        Integer turns = in.nextInt();
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
         RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
@@ -31,7 +33,7 @@ public class Main {
             ArrayList<Ship> ships = mapCreator.createShips(britishShipsCount, piratesCount, mapCreator.getMap());
                 ArrayList<Iceberg> icebergs = mapCreator.createIcebergs(icebergsCount, mapCreator.getMap());
                 BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, icebergs, map);
-                battleSimulator.simulateBattle();
+                battleSimulator.simulateBattle(turns);
                 in.close();
             }
             else {

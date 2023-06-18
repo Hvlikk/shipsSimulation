@@ -30,7 +30,7 @@ public abstract class Ship {
         Integer mapWidth = map[0].length - 1;
         Integer mapHeight = map.length - 1;
 
-        if (newX <= 0 || newX >= mapWidth || newY <= 0 || newY >= mapHeight)
+        if (newX <= 0 || newX >= mapWidth || newY <= 0 || newY >= mapHeight || map[newX][newY] == (char) 73 )
             return false;
 
         return map[newX][newY] == (char) 32 && !isCollision(newX, newY, ships);
@@ -47,6 +47,8 @@ public abstract class Ship {
     public Integer getPosX() {
         return posX;
     }
+
+    public abstract String getName();
 
     public Integer getPosY() {
         return posY;

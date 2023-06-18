@@ -114,6 +114,13 @@ public class BritishShip extends Ship{
         HEALTH -= DAMAGE;
     }
 
+    @Override
+    public String getName()
+    {
+        String name = "brytyjski";
+        return name;
+    }
+
     public Integer calculateDamage(){
 
         Random random = new Random();

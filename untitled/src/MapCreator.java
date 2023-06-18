@@ -11,7 +11,7 @@ public class MapCreator {
     private Integer piratesStartCount;
     private Integer britishShipsStartCount;
 
-    public MapCreator(Integer mapWidth, Integer mapHeight, Integer piratesStartCount, Integer britishShipsStartCount) {
+    public MapCreator(Integer mapHeight, Integer mapWidth, Integer piratesStartCount, Integer britishShipsStartCount) {
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
         this.piratesStartCount = piratesStartCount;
