@@ -1,7 +1,7 @@
-Dokumentacja
-__________
+Sea battle simulator
+______
+Documentation: ----
 
-https://www.overleaf.com/3342688689tdgjgtvttdyk
+About this project:
 
-pozdrawiam wszystkich.
 
