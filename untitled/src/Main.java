@@ -17,7 +17,9 @@ public class Main {
         }
 
         Float thunder = (float) (mapMaxX / 3);
-        boolean RunProgram;
+        boolean CheckMap;
+        boolean CheckThunders;
+        boolean CheckTurns;
         Integer thunders = 0;
 
         System.out.println("Podaj liczbe piratow :");
@@ -27,7 +29,7 @@ public class Main {
         Integer britishShipsCount = in.nextInt();
         System.out.println("Podaj liczbe gór lodowych: ");
         Integer icebergsCount = in.nextInt();
-        System.out.println("Podaj częstotliwość burzy: ");
+        System.out.println("Podaj częstotliwość burzy: (wpisanie 0 wyłącza je w symulacji)");
         Integer turns = in.nextInt();
         if (turns > 0) {
             System.out.println("Podaj ilosć piorunów w burzy (max " + thunder.intValue() + "):");
@@ -35,9 +37,12 @@ public class Main {
         }
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
-        RunProgram = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount, thunders, turns, thunder);
+        CheckMap = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
+        CheckThunders = MapCreator.CheckThunders(thunders, thunder);
+        CheckTurns = MapCreator.CheckTurns(turns);
+        MapCreator.DisplayBugs(CheckMap, CheckThunders, CheckTurns, turns);
 
-        if(RunProgram == true) {
+        if(CheckMap == true && CheckThunders == true && CheckTurns == true) {
             System.out.println("Statki brytyjskie = B, statki piratow = P, góry lodowe = I");
             System.out.println("Podgląd mapy przed rozpoczęciem bitwy:");
             System.out.println("=======================================");
@@ -49,9 +54,7 @@ public class Main {
                 battleSimulator.simulateBattle(turns, thunders);
                 in.close();
             }
-            else {
-                System.out.println("Za duża ilość przedmiotów na mapie. / Za duża ilość piorunów. ");
-            }
+
     }
 
 }

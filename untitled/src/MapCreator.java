@@ -113,10 +113,8 @@ public class MapCreator {
 
         return ships;
     }
-        public static boolean CheckMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount, Integer thunders, Integer turns, Float thunder)
+        public static boolean CheckMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount)
         {
-            if (thunders > thunder || thunders < 1)
-                return false;
 
             Integer mapsize;
             mapsize = (mapMaxX-2) * (mapMaxX-2);
@@ -125,6 +123,34 @@ public class MapCreator {
             if (mapsize < NumberOfObjects)
                 return false;
             else return true;
+        }
+
+        public static boolean CheckThunders (Integer thunders, Float thunder){
+            if (thunders > thunder || thunders < 1)
+                return false;
+            else return true;
+        }
+        public static boolean CheckTurns (Integer turn)
+        {
+            if (turn < 0)
+                return false;
+            else return true;
+
+        }
+
+        public static void DisplayBugs(boolean map, boolean storm, boolean turns, Integer turn){
+            if (map == false)
+            {
+                System.out.println("Za dużo obiektów na mapie.");
+            }
+            if (storm == false && turn < 0)
+            {
+                System.out.println("Ilość błyskawic wynosi 0 bądź jest za wysoka. ");
+            }
+            if (turns == false)
+            {
+                System.out.println("Niepoprawna ilość tur. ");
+            }
         }
 
 }
