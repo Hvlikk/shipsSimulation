@@ -1,11 +1,14 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
+
 public class BattleSimulator {
-    public static final String COLOR_BLUE = "\u001B[34m";
-    public static final String COLOR_RED = "\u001B[31m";
-    public static final String COLOR_RESET = "\u001B[0m";
-    public static final String COLOR_GREEN = "\u001B[32m";
+    private static final String COLOR_RED = "\u001B[31m";
+    private static final String COLOR_RESET = "\u001B[0m";
+    private static final String COLOR_GREEN = "\u001B[32m";
     private final Integer mapHeight;
     private final Integer mapWidth;
     private char map[][];
@@ -95,7 +98,7 @@ public class BattleSimulator {
     }
 
 
-    public void simulateBattle(Integer turns, Integer thunders) {
+    public void simulateBattle(Integer turns, Integer thunders) throws IOException {
         Boolean battleInProgress = true;
         while(battleInProgress) {
             TurnCount++;
@@ -120,6 +123,7 @@ public class BattleSimulator {
             }
             System.out.println("=======" + COLOR_GREEN + " *END OF TURN* " + COLOR_RESET + "=======");
             System.out.println(COLOR_GREEN + "==========================================================" + COLOR_RESET);
+            printDataToFile(TurnCount, map, ships);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -159,5 +163,34 @@ public class BattleSimulator {
             System.out.println("Zwycięstwo brytyjczyków!");
             }
             System.out.println("Ilość tur: " + TurnCount);
+    }
+
+    public void printDataToFile(Integer turnCount, char map[][], ArrayList<Ship> ships) throws IOException {
+        int britishShipsRemaining = 0;
+        int pirateShipsRemaining = 0;
+
+        FileWriter fileWriter = new FileWriter("simulationStats.txt", true);
+        BufferedWriter out = new BufferedWriter(fileWriter);
+        try {
+            for (Ship ship : ships) {
+                if (ship instanceof BritishShip) {
+                    britishShipsRemaining++;
+                } else if (ship instanceof PirateShip) {
+                    pirateShipsRemaining++;
+                }
+            }
+            out.write("Turn number: " + turnCount + "\n");
+            out.write("British ships remaining: " + britishShipsRemaining + " Pirate ships remaining: " + pirateShipsRemaining + "\n");
+            out.write("Map status: \n");
+            for (int i = 0; i < mapHeight; i++) {
+                for (int j = 0; j < mapWidth; j++)
+                    out.write(map[i][j]);
+                out.write("\n");
+            }
+        }
+        catch (IOException e){
+            return;
+        }
+        out.close();
     }
 }

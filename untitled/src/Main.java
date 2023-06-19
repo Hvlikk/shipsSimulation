@@ -1,10 +1,11 @@
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Podaj wymiar (X,Y) mapy - mapa to kwadrat: ");
         Scanner in = new Scanner(System.in);
         Integer mapMaxX = in.nextInt() + 2;
