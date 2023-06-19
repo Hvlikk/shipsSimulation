@@ -14,6 +14,7 @@ public class Main {
         boolean CheckMap;
         boolean CheckThunders;
         boolean CheckTurns;
+
         Integer thunders = 0;
         System.out.println("Podaj liczbe piratow :");
         Integer piratesCount = in.nextInt();

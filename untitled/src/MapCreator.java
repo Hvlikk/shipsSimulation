@@ -115,7 +115,6 @@ public class MapCreator {
     }
         public static boolean CheckMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount)
         {
-
             Integer mapsize;
             mapsize = (mapMaxX-2) * (mapMaxX-2);
             Integer NumberOfObjects;
@@ -149,7 +148,7 @@ public class MapCreator {
             }
             if (turns == false)
             {
-                System.out.println("Niepoprawna ilość tur. ");
+                System.out.println("Negatywna wartość parametru turns. ");
             }
         }
 
