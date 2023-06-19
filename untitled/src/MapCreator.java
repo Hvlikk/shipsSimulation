@@ -124,8 +124,11 @@ public class MapCreator {
             else return true;
         }
 
-        public static boolean CheckThunders (Integer thunders, Float thunder){
-            if (thunders > thunder || thunders < 1)
+        public static boolean CheckThunders (Integer thunders, Float thunder, Integer turns){
+            if (thunders > thunder)
+                return false;
+
+            if (turns > 0 && thunders < 1)
                 return false;
             else return true;
         }
@@ -137,12 +140,12 @@ public class MapCreator {
 
         }
 
-        public static void DisplayBugs(boolean map, boolean storm, boolean turns, Integer turn){
+        public static void DisplayBugs(boolean map, boolean storm, boolean turns){
             if (map == false)
             {
                 System.out.println("Za dużo obiektów na mapie.");
             }
-            if (storm == false && turn < 0)
+            if (storm == false)
             {
                 System.out.println("Ilość błyskawic wynosi 0 bądź jest za wysoka. ");
             }

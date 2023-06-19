@@ -16,6 +16,7 @@ public class Main {
         boolean CheckTurns;
 
         Integer thunders = 0;
+
         System.out.println("Podaj liczbe piratow :");
         Integer piratesCount = in.nextInt();
         System.out.println("Podaj liczbe statkow brytyjskich: ");
@@ -24,15 +25,18 @@ public class Main {
         Integer icebergsCount = in.nextInt();
         System.out.println("Podaj częstotliwość burzy: (wpisanie 0 wyłącza je w symulacji)");
         Integer turns = in.nextInt();
-        System.out.println("Podaj ilosć piorunów w burzy (max " + thunder.intValue() + "):");
-        thunders = in.nextInt();
+
+        if (turns > 0) {
+            System.out.println("Podaj ilosć piorunów w burzy (max " + thunder.intValue() + "):");
+            thunders = in.nextInt();
+        }
 
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
         CheckMap = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
-        CheckThunders = MapCreator.CheckThunders(thunders, thunder);
+        CheckThunders = MapCreator.CheckThunders(thunders, thunder, turns);
         CheckTurns = MapCreator.CheckTurns(turns);
-        MapCreator.DisplayBugs(CheckMap, CheckThunders, CheckTurns, turns);
+        MapCreator.DisplayBugs(CheckMap, CheckThunders, CheckTurns);
 
         if(CheckMap == true && CheckThunders == true && CheckTurns == true) {
             System.out.println("Statki brytyjskie = B, statki piratow = P, góry lodowe = I");
