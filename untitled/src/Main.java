@@ -23,15 +23,9 @@ public class Main {
         Integer icebergsCount = in.nextInt();
         System.out.println("Podaj częstotliwość burzy: (wpisanie 0 wyłącza je w symulacji)");
         Integer turns = in.nextInt();
-        if (turns > 0) {
-            System.out.println("Podaj ilosć piorunów w burzy (max " + thunder.intValue() + "):");
-            thunders = in.nextInt();
-        }
-        if (piratesCount < 0 || britishShipsCount < 0 || icebergsCount < 0 || mapMaxX < 0)
-        {
-            System.out.println("Jeden z parametrów jest błędny\n");
-            System.exit(0);
-        }
+        System.out.println("Podaj ilosć piorunów w burzy (max " + thunder.intValue() + "):");
+        thunders = in.nextInt();
+
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
         CheckMap = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
