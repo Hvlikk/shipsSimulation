@@ -113,11 +113,9 @@ public class MapCreator {
 
         return ships;
     }
-        public static boolean CheckMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount, Integer thunders, Integer turns)
+        public static boolean CheckMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount, Integer thunders, Integer turns, Float thunder)
         {
-            if (thunders > 3)
-                return false;
-            if (turns < 1)
+            if (thunders > thunder || thunders < 1)
                 return false;
 
             Integer mapsize;
@@ -128,4 +126,5 @@ public class MapCreator {
                 return false;
             else return true;
         }
+
 }
