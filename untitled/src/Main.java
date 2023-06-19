@@ -10,19 +10,11 @@ public class Main {
         Scanner in = new Scanner(System.in);
         Integer mapMaxX = in.nextInt() + 2;
         Integer mapMaxY = mapMaxX;
-
-        if(mapMaxX < 0){
-            System.out.println("Nieprawidłowy rozmiar mapy!");
-            System.exit(0);
-        }
-
         Float thunder = (float) (mapMaxX / 3);
         boolean RunProgram;
         Integer thunders = 0;
-
         System.out.println("Podaj liczbe piratow :");
         Integer piratesCount = in.nextInt();
-
         System.out.println("Podaj liczbe statkow brytyjskich: ");
         Integer britishShipsCount = in.nextInt();
         System.out.println("Podaj liczbe gór lodowych: ");
@@ -32,6 +24,11 @@ public class Main {
         if (turns > 0) {
             System.out.println("Podaj ilosć piorunów w burzy (max " + thunder.intValue() + "):");
             thunders = in.nextInt();
+        }
+        if (piratesCount < 0 || britishShipsCount < 0 || icebergsCount < 0 || mapMaxX < 0)
+        {
+            System.out.println("Jeden z parametrów jest błędny\n");
+            System.exit(0);
         }
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
