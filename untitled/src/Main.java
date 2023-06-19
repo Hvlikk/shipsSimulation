@@ -5,11 +5,17 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("Podaj wymiar (X,Y) mapy - mapa to kwadrat: ");
         Scanner in = new Scanner(System.in);
         Integer mapMaxX = in.nextInt() + 2;
         Integer mapMaxY = mapMaxX;
+
+        if(mapMaxX < 0){
+            System.out.println("Nieprawidłowy rozmiar mapy!");
+            System.exit(0);
+        }
+
         Float thunder = (float) (mapMaxX / 3);
         boolean RunProgram;
         Integer thunders = 0;
@@ -39,7 +45,7 @@ public class Main {
             char[][] map = mapCreator.createMap(mapMaxX, mapMaxY);
             ArrayList<Ship> ships = mapCreator.createShips(britishShipsCount, piratesCount, mapCreator.getMap());
                 ArrayList<Iceberg> icebergs = mapCreator.createIcebergs(icebergsCount, mapCreator.getMap());
-                BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, icebergs, map);
+                BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, icebergs, map, britishShipsCount, piratesCount);
                 battleSimulator.simulateBattle(turns, thunders);
                 in.close();
             }

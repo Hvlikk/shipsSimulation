@@ -1,4 +1,5 @@
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -13,22 +14,25 @@ public class BattleSimulator {
     private final Integer mapWidth;
     private char map[][];
     private ArrayList<Ship> ships;
-    private  final ArrayList<Iceberg> icebergs;
+    private final ArrayList<Iceberg> icebergs;
     public Integer TurnCount = 0;
+    private final Integer startingBritishCount;
+    private final Integer startingPiratesCount;
 
-
-    public BattleSimulator(Integer mapWidth, Integer mapHeight, ArrayList<Ship> ships, ArrayList<Iceberg> icebergs, char map[][]) {
+    public BattleSimulator(Integer mapWidth, Integer mapHeight, ArrayList<Ship> ships, ArrayList<Iceberg> icebergs, char map[][], Integer startingBritishCount, Integer startingPiratesCount) {
         this.icebergs = icebergs;
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
         this.ships = ships;
         this.map = map;
+        this.startingBritishCount = startingBritishCount;
+        this.startingPiratesCount = startingPiratesCount;
     }
 
-    public void removeDestroyedShips(char[][] map){
+    public void removeDestroyedShips(char[][] map) {
         ArrayList<Ship> destroyedShips = new ArrayList<>();
 
-        for (Ship ship: ships){
+        for (Ship ship : ships) {
             if (ship.getHEALTH() <= 0) {
                 destroyedShips.add(ship);
                 map[ship.getPosY()][ship.getPosX()] = ' ';
@@ -45,15 +49,14 @@ public class BattleSimulator {
         }
     }
 
-    private Boolean checkEndingCondition(){
+    private Boolean checkEndingCondition() {
         Boolean britishShipsRemaining = false;
         Boolean piratesShipRemaining = false;
 
-        for (Ship ship : ships){
+        for (Ship ship : ships) {
             if (ship instanceof BritishShip) {
                 britishShipsRemaining = true;
-            }
-            else if (ship instanceof  PirateShip) {
+            } else if (ship instanceof PirateShip) {
                 piratesShipRemaining = true;
             }
 
@@ -64,8 +67,7 @@ public class BattleSimulator {
         return true;
     }
 
-    public void Thunderstorm (Integer turns, Integer thunders, Integer turnCount, char map[][])
-    {
+    public void Thunderstorm(Integer turns, Integer thunders, Integer turnCount, char map[][]) {
         if (turns > 0) {
             Random random = new Random();
             if (turnCount % turns == 0) {
@@ -89,52 +91,56 @@ public class BattleSimulator {
     }
 
 
-    public void printCasualities(ArrayList<Ship> ships){
-        for (Ship ship: ships)
-        {
-            if (ship.getHEALTH() <= 0)
-            {
+    public void printCasualities(ArrayList<Ship> ships) {
+        for (Ship ship : ships) {
+            if (ship.getHEALTH() <= 0) {
                 System.out.println("Statek " + ship.getName() + " " + ship.getId() + " został zatopiony.");
             }
         }
     }
 
 
-    public void simulateBattle(Integer turns, Integer thunders) throws IOException {
-        Boolean battleInProgress = true;
-        while(battleInProgress) {
-            TurnCount++;
-            System.out.println("==========================================================");
-            System.out.println("ROUND NUMBER: " + COLOR_RED + TurnCount + COLOR_RESET);
-            System.out.println("==========================================================");
+    public void simulateBattle(Integer turns, Integer thunders) {
+        try {
+            checkIfFileExist();
+            Boolean battleInProgress = true;
+            while (battleInProgress) {
+                TurnCount++;
+                System.out.println("==========================================================");
+                System.out.println("ROUND NUMBER: " + COLOR_RED + TurnCount + COLOR_RESET);
+                System.out.println("==========================================================");
 
-            for (Ship ship : ships) {
-                ship.shipMovement(map, ships);
-            }
-            showMap();
-            for (Ship ship : ships) {
-                ship.shipAttack(ships);
-            }
-            System.out.println("=======" + COLOR_GREEN + " *BATTLE LOG* " + COLOR_RESET + "=======");
-            Thunderstorm(turns, thunders, TurnCount, map);
-            printCasualities(ships);
-            removeDestroyedShips(map);
+                for (Ship ship : ships) {
+                    ship.shipMovement(map, ships);
+                }
+                showMap();
+                for (Ship ship : ships) {
+                    ship.shipAttack(ships);
+                }
+                System.out.println("=======" + COLOR_GREEN + " *BATTLE LOG* " + COLOR_RESET + "=======");
+                Thunderstorm(turns, thunders, TurnCount, map);
+                printCasualities(ships);
+                removeDestroyedShips(map);
 
-            if (checkEndingCondition()) {
-                battleInProgress = false;
-            }
-            System.out.println("=======" + COLOR_GREEN + " *END OF TURN* " + COLOR_RESET + "=======");
-            System.out.println(COLOR_GREEN + "==========================================================" + COLOR_RESET);
-            printDataToFile(TurnCount, map, ships);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                if (checkEndingCondition()) {
+                    battleInProgress = false;
+                }
+                System.out.println("=======" + COLOR_GREEN + " *END OF TURN* " + COLOR_RESET + "=======");
+                System.out.println(COLOR_GREEN + "==========================================================" + COLOR_RESET);
+                printDataToFile(battleInProgress, TurnCount, map, ships, startingBritishCount, startingPiratesCount);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
+        catch(IOException e){
+                throw new RuntimeException();
+            }
+            displaySimulationResult();
+        }
 
-        displaySimulationResult();
-    }
 
     public void displaySimulationResult()
     {
@@ -167,32 +173,81 @@ public class BattleSimulator {
             System.out.println("Ilość tur: " + TurnCount);
     }
 
-    public void printDataToFile(Integer turnCount, char map[][], ArrayList<Ship> ships) throws IOException {
+    public void printDataToFile(Boolean battleInProgress, Integer turnCount, char map[][], ArrayList<Ship> ships, Integer startingBritishCount, Integer startingPiratesCount) throws IOException {
         int britishShipsRemaining = 0;
         int pirateShipsRemaining = 0;
-
+        int pirateCasualties = 0;
+        int britishCasualties = 0;
         FileWriter fileWriter = new FileWriter("simulationStats.txt", true);
         BufferedWriter out = new BufferedWriter(fileWriter);
-        try {
-            for (Ship ship : ships) {
-                if (ship instanceof BritishShip) {
-                    britishShipsRemaining++;
-                } else if (ship instanceof PirateShip) {
-                    pirateShipsRemaining++;
+        if(battleInProgress) {
+            try {
+                for (Ship ship : ships) {
+                    if (ship instanceof BritishShip) {
+                        britishShipsRemaining++;
+                    } else if (ship instanceof PirateShip) {
+                        pirateShipsRemaining++;
+                    }
                 }
-            }
-            out.write("Turn number: " + turnCount + "\n");
-            out.write("British ships remaining: " + britishShipsRemaining + " Pirate ships remaining: " + pirateShipsRemaining + "\n");
-            out.write("Map status: \n");
-            for (int i = 0; i < mapHeight; i++) {
-                for (int j = 0; j < mapWidth; j++)
-                    out.write(map[i][j]);
-                out.write("\n");
+                pirateCasualties = startingPiratesCount - pirateShipsRemaining;
+                britishCasualties = startingBritishCount - britishShipsRemaining;
+                out.write("Turn number: " + turnCount + "\n");
+                out.write("British ships remaining: " + britishShipsRemaining + " Pirate ships remaining: " + pirateShipsRemaining + "\n");
+                out.write("British ships destroyed: " + britishCasualties + " Pirate ships destroyed: " + pirateCasualties + "\n");
+                out.write("Map status: \n");
+                for (int i = 0; i < mapHeight; i++) {
+                    for (int j = 0; j < mapWidth; j++)
+                        out.write(map[i][j]);
+                    out.write("\n");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException();
             }
         }
-        catch (IOException e){
-            return;
+        else {
+            try {
+                for (Ship ship : ships) {
+                    if (ship instanceof BritishShip) {
+                        britishShipsRemaining++;
+                    } else if (ship instanceof PirateShip) {
+                        pirateShipsRemaining++;
+                    }
+                }
+                out.write("Wynik symulacji:\n");
+                out.write("Statki brytyjskie pozostałe: " + britishShipsRemaining + "\n");
+                out.write("Statki pirackie pozostałe: " + pirateShipsRemaining + "\n");
+                out.write("==================================\n");
+                out.write("MAPA PO ZAKOŃCZENIU BITWY\n");
+                out.write("==================================\n");
+
+                for (int i = 0; i < mapHeight; i++) {
+                    for (int j = 0; j < mapWidth; j++)
+                        out.write(map[i][j]);
+                    out.write("\n");
+                }
+
+                if (britishShipsRemaining == 0 && pirateShipsRemaining == 0)
+                    out.write("Wszystkie statki zostały zatopione przez burzę. \n");
+
+                else if (britishShipsRemaining == 0) {
+                    out.write("Zwycięstwo piratów!\n");
+                } else {
+                    out.write("Zwycięstwo brytyjczyków!\n");
+                }
+                out.write("Całkowita ilość tur: " + TurnCount + "\n");
+            }
+            catch (IOException e){
+                throw new RuntimeException();
+            }
+
         }
         out.close();
+    }
+
+    public void checkIfFileExist()
+    {
+        File file = new File("simulationStats.txt");
+        if (file.exists())
+            file.delete();
     }
 }
