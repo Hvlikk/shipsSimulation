@@ -33,10 +33,10 @@ public class Main {
 
 
         MapCreator mapCreator = new MapCreator(mapMaxX, mapMaxY, piratesCount, britishShipsCount);
-        CheckMap = MapCreator.CheckMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
-        CheckThunders = MapCreator.CheckThunders(thunders, thunder, turns);
-        CheckTurns = MapCreator.CheckTurns(turns);
-        MapCreator.DisplayBugs(CheckMap, CheckThunders, CheckTurns);
+        CheckMap = MapCreator.checkMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
+        CheckThunders = MapCreator.checkThunders(thunders, thunder, turns);
+        CheckTurns = MapCreator.checkTurns(turns);
+        MapCreator.displayBugs(CheckMap, CheckThunders, CheckTurns);
 
         if(CheckMap == true && CheckThunders == true && CheckTurns == true) {
             System.out.println("Statki brytyjskie = B, statki piratow = P, góry lodowe = I");

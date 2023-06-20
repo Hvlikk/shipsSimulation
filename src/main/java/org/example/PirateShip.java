@@ -132,9 +132,6 @@ public class PirateShip extends Ship{
         return targets;
     }
 
-
-
-
     public void recieveAttack(Integer DAMAGE) {
         HEALTH -= DAMAGE;
     }

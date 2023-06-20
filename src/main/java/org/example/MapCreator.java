@@ -114,7 +114,7 @@ public class MapCreator {
 
         return ships;
     }
-    public static boolean CheckMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount)
+    public static boolean checkMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount)
     {
         Integer mapsize;
         mapsize = (mapMaxX-2) * (mapMaxX-2);
@@ -125,7 +125,7 @@ public class MapCreator {
         else return true;
     }
 
-    public static boolean CheckThunders (Integer thunders, Float thunder, Integer turns){
+    public static boolean checkThunders (Integer thunders, Float thunder, Integer turns){
         if (thunders > thunder)
             return false;
 
@@ -133,7 +133,7 @@ public class MapCreator {
             return false;
         else return true;
     }
-    public static boolean CheckTurns (Integer turn)
+    public static boolean checkTurns (Integer turn)
     {
         if (turn < 0)
             return false;
@@ -141,7 +141,7 @@ public class MapCreator {
 
     }
 
-    public static void DisplayBugs(boolean map, boolean storm, boolean turns){
+    public static void displayBugs(boolean map, boolean storm, boolean turns){
         if (map == false)
         {
             System.out.println("Za dużo obiektów na mapie.");

@@ -30,6 +30,12 @@ public class BattleSimulator {
         this.startingPiratesCount = startingPiratesCount;
     }
 
+    /**
+     * <var>
+     *     This method deletes ships after each turn, which health points are equal to 0
+     * </var>
+     * @param map
+     */
     public void removeDestroyedShips(char[][] map) {
         ArrayList<Ship> destroyedShips = new ArrayList<>();
 
@@ -42,6 +48,9 @@ public class BattleSimulator {
         ships.removeAll(destroyedShips);
     }
 
+    /**
+     * This method prints map in console.
+     */
     public void showMap() {
         for (int i = 0; i < mapHeight; i++) {
             for (int j = 0; j < mapWidth; j++)
@@ -50,6 +59,14 @@ public class BattleSimulator {
         }
     }
 
+    /**
+     * <var>
+     *    Method is checking ending conditions of the simulation
+     * </var>
+     *
+     *
+     * @return
+     */
     private Boolean checkEndingCondition() {
         Boolean britishShipsRemaining = false;
         Boolean piratesShipRemaining = false;
@@ -68,7 +85,17 @@ public class BattleSimulator {
         return true;
     }
 
-    public Integer Thunderstorm(Integer turns, Integer thunders, Integer turnCount, char map[][]) {
+    /**
+     *
+     * Needs to be  filled
+     *
+     * @param turns
+     * @param thunders
+     * @param turnCount
+     * @param map
+     * @return
+     */
+    public Integer thunderstorm(Integer turns, Integer thunders, Integer turnCount, char map[][]) {
         Integer stormcount = 0;
         if (turns > 0) {
             Random random = new Random();
@@ -95,6 +122,10 @@ public class BattleSimulator {
     }
 
 
+    /**
+     * Method prints ships that were destroyed in last round.
+     * @param ships
+     */
     public void printCasualities(ArrayList<Ship> ships) {
         for (Ship ship : ships) {
             if (ship.getHEALTH() <= 0) {
@@ -103,7 +134,11 @@ public class BattleSimulator {
         }
     }
 
-
+    /**
+     *
+     * @param turns
+     * @param thunders
+     */
     public void simulateBattle(Integer turns, Integer thunders) {
         Integer stormcount = 0;
         try {
@@ -121,7 +156,7 @@ public class BattleSimulator {
                 }
                 showMap();
                 System.out.println("=======" + COLOR_GREEN + " *BATTLE LOG* " + COLOR_RESET + "=======");
-                stormcount += Thunderstorm(turns, thunders, TurnCount, map);
+                stormcount += thunderstorm(turns, thunders, TurnCount, map);
                 printCasualities(ships);
                 removeDestroyedShips(map);
 
@@ -144,7 +179,10 @@ public class BattleSimulator {
         displaySimulationResult(stormcount);
     }
 
-
+    /**
+     * Method is responsible for printing results of the simulation.
+     * @param stormcount
+     */
     public void displaySimulationResult(Integer stormcount)
     {
         int britishShipsRemaining = 0;
@@ -161,7 +199,7 @@ public class BattleSimulator {
         System.out.println("Statki brytyjskie pozostałe: " + britishShipsRemaining);
         System.out.println("Statki pirackie pozostałe: " + pirateShipsRemaining);
         System.out.println("==================================");
-        System.out.println("MAPA PO ZAKOŃCZENIU BITWY");
+        System.out.println("MAPA PO ZAKONCZENIU BITWY");
         System.out.println("==================================");
         showMap();
 
@@ -177,6 +215,17 @@ public class BattleSimulator {
         System.out.println("Ilość statków zatopiona przez burzę: " + stormcount);
     }
 
+    /**
+     * Method prints collected data to .txt file
+     * @param battleInProgress
+     * @param turnCount
+     * @param map
+     * @param ships
+     * @param startingBritishCount
+     * @param startingPiratesCount
+     * @param stormcount
+     * @throws IOException
+     */
     public void printDataToFile(Boolean battleInProgress, Integer turnCount, char map[][], ArrayList<Ship> ships, Integer startingBritishCount, Integer startingPiratesCount,Integer stormcount) throws IOException {
         int britishShipsRemaining = 0;
         int pirateShipsRemaining = 0;
@@ -223,7 +272,7 @@ public class BattleSimulator {
                 out.write("Statki zatopione przez burzę: " + stormcount + "\n");
 
                 out.write("==================================\n");
-                out.write("MAPA PO ZAKOŃCZENIU BITWY\n");
+                out.write("MAPA PO ZAKONCZENIU BITWY\n");
                 out.write("==================================\n");
 
                 for (int i = 0; i < mapHeight; i++) {
@@ -250,6 +299,9 @@ public class BattleSimulator {
         out.close();
     }
 
+    /**
+     * Method checks if .txt file for data already exists, if there is one it deletes it.
+     */
     public void checkIfFileExist()
     {
         File file = new File("simulationStats.txt");
