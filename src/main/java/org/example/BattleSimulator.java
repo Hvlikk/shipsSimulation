@@ -113,11 +113,9 @@ public class BattleSimulator {
 
                 for (Ship ship : ships) {
                     ship.shipMovement(map, ships);
-                }
-                showMap();
-                for (Ship ship : ships) {
                     ship.shipAttack(ships);
                 }
+                showMap();
                 System.out.println("=======" + COLOR_GREEN + " *BATTLE LOG* " + COLOR_RESET + "=======");
                 Thunderstorm(turns, thunders, TurnCount, map);
                 printCasualities(ships);

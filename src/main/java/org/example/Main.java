@@ -47,6 +47,7 @@ public class Main {
             ArrayList<Ship> ships = mapCreator.createShips(britishShipsCount, piratesCount, mapCreator.getMap());
             ArrayList<Iceberg> icebergs = mapCreator.createIcebergs(icebergsCount, mapCreator.getMap());
             BattleSimulator battleSimulator = new BattleSimulator(mapMaxY, mapMaxX, ships, icebergs, map, britishShipsCount, piratesCount);
+            battleSimulator.showMap();
             battleSimulator.simulateBattle(turns, thunders);
             in.close();
         }

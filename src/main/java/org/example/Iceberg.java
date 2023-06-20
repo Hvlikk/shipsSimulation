@@ -10,4 +10,8 @@ public class Iceberg {
         this.posX = posX;
         this.posY = posY;
     }
+
+    public Integer getPosX() {return posX; }
+    public Integer getPosY() {return posY; }
+
 }
