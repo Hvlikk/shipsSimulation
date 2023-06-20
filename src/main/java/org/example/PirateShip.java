@@ -9,10 +9,10 @@ public class PirateShip extends Ship{
     public static final String COLOR_GREEN = "\u001B[32m";
     public static final String COLOR_RED = "\u001B[31m";
     public static final String COLOR_RESET = "\u001B[0m";
-    private Integer HEALTH = 1;
+    private Integer HEALTH = 3;
     private final static Integer MOVEMENT = 2;
-    private final static Integer ACCURACY = 50;
-    private final static Integer CANNON_DAMAGE = 2;
+    private final static Integer ACCURACY = 40;
+    private final static Integer CANNON_DAMAGE = 1;
     public PirateShip(Integer posX, Integer posY, Integer id, String direction, Integer MoveSpeed)
     {
         super(posX, posY, id, direction, MoveSpeed);
@@ -113,7 +113,7 @@ public class PirateShip extends Ship{
             Integer DAMAGE = calculateDamage();
             targetShip.recieveAttack(DAMAGE);
             System.out.println(COLOR_RED + "Statek piracki " + COLOR_GREEN + getId() + COLOR_RESET + " zaatakował " + COLOR_BLUE + "statek brytyjski " + COLOR_GREEN + targetShip.getId() + COLOR_RESET + " i uderzył go za " + COLOR_GREEN + DAMAGE + COLOR_RESET + " obrażeń" + COLOR_RESET);
-            System.out.println(COLOR_BLUE + "HP statku brytyjskiego po ataku: " + COLOR_GREEN + targetShip.getHEALTH() + COLOR_RESET);
+            System.out.println(COLOR_BLUE + "HP statku brytyjskiego " + COLOR_GREEN + targetShip.getId() + COLOR_BLUE + " po ataku: " + COLOR_GREEN + targetShip.getHEALTH() + COLOR_RESET);
         }
     }
 

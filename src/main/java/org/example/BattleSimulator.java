@@ -36,7 +36,7 @@ public class BattleSimulator {
         for (Ship ship : ships) {
             if (ship.getHEALTH() <= 0) {
                 destroyedShips.add(ship);
-                map[ship.getPosY()][ship.getPosX()] = (char) 32;
+                map[ship.getPosY()][ship.getPosX()] = ' ';
             }
         }
         ships.removeAll(destroyedShips);
@@ -174,7 +174,7 @@ public class BattleSimulator {
             System.out.println("Zwycięstwo brytyjczyków!");
         }
         System.out.println("Ilość tur: " + TurnCount);
-        System.out.println("Ilość statków zabita przez burzę: " + stormcount);
+        System.out.println("Ilość statków zatopiona przez burzę: " + stormcount);
     }
 
     public void printDataToFile(Boolean battleInProgress, Integer turnCount, char map[][], ArrayList<Ship> ships, Integer startingBritishCount, Integer startingPiratesCount,Integer stormcount) throws IOException {
