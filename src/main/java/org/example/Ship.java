@@ -21,7 +21,7 @@ public abstract class Ship {
 
     public Boolean isCollision(Integer newX, Integer newY, ArrayList<Ship> ships){
         for (Ship ship : ships){
-            if (ship != this && ship.getPosX() == newX && ship.getPosY() == newY)
+            if (ship != this && ship.getPosX() == newX && ship.getPosY() == newY && newX != 'I' && newY != 'I')
                 return true;
         }
         return false;
