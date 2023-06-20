@@ -29,6 +29,7 @@ public abstract class Ship {
         return false;
     }
 
+
     public Boolean isValidMove(Integer newX, Integer newY, char map[][], ArrayList<Ship> ships)
     {
         Integer mapWidth = map[0].length - 1;

@@ -68,7 +68,8 @@ public class BattleSimulator {
         return true;
     }
 
-    public void Thunderstorm(Integer turns, Integer thunders, Integer turnCount, char map[][]) {
+    public Integer Thunderstorm(Integer turns, Integer thunders, Integer turnCount, char map[][]) {
+        Integer stormcount = 0;
         if (turns > 0) {
             Random random = new Random();
             if (turnCount % turns == 0) {
@@ -83,12 +84,14 @@ public class BattleSimulator {
                                 ship.recieveAttack(health);
                                 System.out.println("Burza trafiła statek " + ship.getName() + " " + ship.getId() + " i go zatopiła. ");
                                 map[XHit][YHit] = (char) 32;
+                                stormcount++;
                             }
                         }
                     }
                 }
             }
         }
+        return stormcount;
     }
 
 
@@ -102,6 +105,7 @@ public class BattleSimulator {
 
 
     public void simulateBattle(Integer turns, Integer thunders) {
+        Integer stormcount = 0;
         try {
             checkIfFileExist();
             Boolean battleInProgress = true;
@@ -117,7 +121,7 @@ public class BattleSimulator {
                 }
                 showMap();
                 System.out.println("=======" + COLOR_GREEN + " *BATTLE LOG* " + COLOR_RESET + "=======");
-                Thunderstorm(turns, thunders, TurnCount, map);
+                stormcount += Thunderstorm(turns, thunders, TurnCount, map);
                 printCasualities(ships);
                 removeDestroyedShips(map);
 
@@ -126,7 +130,7 @@ public class BattleSimulator {
                 }
                 System.out.println("=======" + COLOR_GREEN + " *END OF TURN* " + COLOR_RESET + "=======");
                 System.out.println(COLOR_GREEN + "==========================================================" + COLOR_RESET);
-                printDataToFile(battleInProgress, TurnCount, map, ships, startingBritishCount, startingPiratesCount);
+                printDataToFile(battleInProgress, TurnCount, map, ships, startingBritishCount, startingPiratesCount, stormcount);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -137,11 +141,11 @@ public class BattleSimulator {
         catch(IOException e){
             throw new RuntimeException();
         }
-        displaySimulationResult();
+        displaySimulationResult(stormcount);
     }
 
 
-    public void displaySimulationResult()
+    public void displaySimulationResult(Integer stormcount)
     {
         int britishShipsRemaining = 0;
         int pirateShipsRemaining = 0;
@@ -170,9 +174,10 @@ public class BattleSimulator {
             System.out.println("Zwycięstwo brytyjczyków!");
         }
         System.out.println("Ilość tur: " + TurnCount);
+        System.out.println("Ilość statków zabita przez burzę: " + stormcount);
     }
 
-    public void printDataToFile(Boolean battleInProgress, Integer turnCount, char map[][], ArrayList<Ship> ships, Integer startingBritishCount, Integer startingPiratesCount) throws IOException {
+    public void printDataToFile(Boolean battleInProgress, Integer turnCount, char map[][], ArrayList<Ship> ships, Integer startingBritishCount, Integer startingPiratesCount,Integer stormcount) throws IOException {
         int britishShipsRemaining = 0;
         int pirateShipsRemaining = 0;
         int pirateCasualties = 0;
@@ -215,6 +220,8 @@ public class BattleSimulator {
                 out.write("Wynik symulacji:\n");
                 out.write("Statki brytyjskie pozostałe: " + britishShipsRemaining + "\n");
                 out.write("Statki pirackie pozostałe: " + pirateShipsRemaining + "\n");
+                out.write("Statki zatopione przez burzę: " + stormcount + "\n");
+
                 out.write("==================================\n");
                 out.write("MAPA PO ZAKOŃCZENIU BITWY\n");
                 out.write("==================================\n");
