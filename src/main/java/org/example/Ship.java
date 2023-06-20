@@ -19,9 +19,11 @@ public abstract class Ship {
         this.MoveSpeed = MoveSpeed;
     }
 
-    public Boolean isCollision(Integer newX, Integer newY, ArrayList<Ship> ships){
+    public Boolean isCollision(Integer newX, Integer newY, ArrayList<Ship> ships, char map[][]){
         for (Ship ship : ships){
-            if (ship != this && ship.getPosX() == newX && ship.getPosY() == newY && newX != 'I' && newY != 'I')
+            if (ship != this && ship.getPosX() == newX && ship.getPosY() == newY)
+                return true;
+            if (map[newY][newX] == (char) 73)
                 return true;
         }
         return false;
@@ -32,10 +34,10 @@ public abstract class Ship {
         Integer mapWidth = map[0].length - 1;
         Integer mapHeight = map.length - 1;
 
-        if (newX <= 0 || newX >= mapWidth || newY <= 0 || newY >= mapHeight || map[newX][newY] == (char) 73 )
+        if (newX <= 0 || newX >= mapWidth || newY <= 0 || newY >= mapHeight)
             return false;
 
-        return map[newX][newY] == (char) 32 && !isCollision(newX, newY, ships);
+        return !isCollision(newX, newY, ships, map);
     }
 
     public abstract void shipAttack(ArrayList<Ship> ships);

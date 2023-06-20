@@ -1,9 +1,9 @@
 package org.example;
 
 public class Iceberg {
-    protected Integer id;
-    protected Integer posX;
-    protected Integer posY;
+    private Integer id;
+    private Integer posX;
+    private Integer posY;
 
     public Iceberg(Integer id, Integer posX, Integer posY){
         this.id = id;

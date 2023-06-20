@@ -9,7 +9,7 @@ public class BritishShip extends Ship{
     public static final String COLOR_RED = "\u001B[31m";
     public static final String COLOR_RESET = "\u001B[0m";
     public static final String COLOR_GREEN = "\u001B[32m";
-    protected Integer HEALTH = 2;
+    private Integer HEALTH = 2;
     protected final static Integer MOVEMENT = 1;
     protected final static Integer ACCURACY = 75;
     protected final static Integer CANNON_DAMAGE = 1;
