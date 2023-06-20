@@ -36,7 +36,7 @@ public class BattleSimulator {
         for (Ship ship : ships) {
             if (ship.getHEALTH() <= 0) {
                 destroyedShips.add(ship);
-                map[ship.getPosY()][ship.getPosX()] = ' ';
+                map[ship.getPosY()][ship.getPosX()] = (char) 32;
             }
         }
         ships.removeAll(destroyedShips);

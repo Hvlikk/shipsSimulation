@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="038246f7-0021-4b5f-b7c2-805bd74aac90" name="Changes" comment="#27, fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="038246f7-0021-4b5f-b7c2-805bd74aac90" name="Changes" comment="#27 fixed collision">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BritishShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BritishShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Iceberg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Iceberg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BattleSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BattleSimulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +56,14 @@
       <workItem from="1687290248797" duration="913000" />
       <workItem from="1687291193350" duration="1002000" />
     </task>
+    <task id="LOCAL-00001" summary="#27 fixed collision">
+      <created>1687292684682</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687292684682</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,5 +91,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#27 fixed collision" />
+    <option name="LAST_COMMIT_MESSAGE" value="#27 fixed collision" />
   </component>
 </project>
