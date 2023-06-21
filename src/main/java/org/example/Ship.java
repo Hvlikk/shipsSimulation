@@ -3,6 +3,9 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * Description of Ship
+ */
 public abstract class Ship {
     protected Integer id;
     protected Integer posX;

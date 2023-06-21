@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Description of BattleSimulator
+ */
 public class BattleSimulator {
     private static final String COLOR_RED = "\u001B[31m";
     private static final String COLOR_RESET = "\u001B[0m";

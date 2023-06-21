@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.List;
 
+/**
+ * Description of BritishShip
+ */
 public class BritishShip extends Ship{
     public static final String COLOR_BLUE = "\u001B[34m";
     public static final String COLOR_RED = "\u001B[31m";

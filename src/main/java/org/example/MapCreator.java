@@ -3,6 +3,9 @@ package org.example;
 import java.util.Random;
 import java.util.ArrayList;
 
+/**
+ * Description of MapCreator
+ */
 public class MapCreator {
     private ArrayList<Ship> ships;
     private ArrayList<Iceberg> icebergs;

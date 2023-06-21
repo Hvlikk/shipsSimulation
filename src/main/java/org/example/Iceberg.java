@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Description of Iceberg
+ */
 public class Iceberg {
     private Integer id;
     private Integer posX;
