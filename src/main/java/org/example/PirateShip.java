@@ -19,6 +19,9 @@ public class PirateShip extends Ship{
         setRandomDirection();
     }
 
+    /**
+     * Method is setting random direction in process of creating objects.
+     */
     private void setRandomDirection()
     {
         ArrayList<String> directions = new ArrayList<>();
@@ -34,6 +37,10 @@ public class PirateShip extends Ship{
         this.direction = directions.get(random.nextInt(directions.size()));
     }
 
+    /**
+     * Method returns List of available directions.
+     * @return
+     */
     public List<String> getAvailableDirections() {
         List<String> availableDirections = new ArrayList<>();
         availableDirections.add("North");
@@ -48,6 +55,11 @@ public class PirateShip extends Ship{
         return availableDirections;
     }
 
+    /**
+     * Method implements movement logic for Pirate ships.
+     * @param map
+     * @param ships
+     */
     @Override
     public void shipMovement(char map[][], ArrayList<Ship> ships) {
 
@@ -99,6 +111,10 @@ public class PirateShip extends Ship{
         }
     }
 
+    /**
+     * Method implements attack logic for Pirate ships.
+     * @param ships
+     */
     public void shipAttack(ArrayList<Ship> ships) {
         if (HEALTH <= 0)
             return;
@@ -117,6 +133,12 @@ public class PirateShip extends Ship{
         }
     }
 
+    /**
+     * Method is checking available ships to attack according to currently selected ship
+     * @param ships
+     * @param range
+     * @return
+     */
     private ArrayList<Ship> getShipsInRange(ArrayList<Ship> ships, Integer range){
         ArrayList<Ship> targets = new ArrayList<>();
         for (Ship ship : ships)
@@ -132,11 +154,19 @@ public class PirateShip extends Ship{
         return targets;
     }
 
+    /**
+     * Method which implements recieving attack damage
+     * @param DAMAGE
+     */
     public void recieveAttack(Integer DAMAGE) {
         HEALTH -= DAMAGE;
     }
 
 
+    /**
+     * Method calculate damage after attack move
+     * @return
+     */
     public Integer calculateDamage(){
         Random random = new Random();
         Integer isHit = random.nextInt(101);
@@ -145,17 +175,30 @@ public class PirateShip extends Ship{
         else return 0;
     }
 
+    /**
+     * Name getter, which returns value "Pirate"
+     * @return
+     */
     @Override
     public String getName()
     {
         String name = "piracki";
         return name;
     }
+
+    /**
+     * Direction getter, which returns value of direction parameter
+     * @return
+     */
     public String getDirection()
     {
         return direction;
     }
 
+    /**
+     * Health points getter
+     * @return
+     */
     public Integer getHEALTH() {
         return HEALTH;
     }

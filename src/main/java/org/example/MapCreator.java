@@ -22,6 +22,12 @@ public class MapCreator {
         map = new char[mapHeight][mapWidth];
     }
 
+    /**
+     * This method creates map, which is two-dimensional char array
+     * @param mapHeight
+     * @param mapWidth
+     * @return
+     */
     public char[][] createMap(Integer mapHeight, Integer mapWidth){
         for (int i = 0; i < mapHeight; i++)
         {
@@ -39,10 +45,21 @@ public class MapCreator {
         return map;
     }
 
+    /**
+     * map getter
+     * @return
+     */
     public char[][] getMap() {
         return map;
     }
 
+
+    /**
+     * Method creates ArrayList of icebergs
+     * @param icebergCount
+     * @param map
+     * @return
+     */
     public ArrayList<Iceberg> createIcebergs(Integer icebergCount, char map[][]) {
         Random random = new Random();
         for (int i = 1; i <= icebergCount; i++)
@@ -66,6 +83,13 @@ public class MapCreator {
         return icebergs;
     }
 
+    /**
+     * Method creates ArrayList of ships
+     * @param britishShipsStartCount
+     * @param piratesStartCount
+     * @param map
+     * @return
+     */
     public ArrayList<Ship> createShips(Integer britishShipsStartCount, Integer piratesStartCount, char map[][])
     {
         Random random = new Random();
@@ -114,6 +138,15 @@ public class MapCreator {
 
         return ships;
     }
+
+    /**
+     * ??
+     * @param mapMaxX
+     * @param PiratesCount
+     * @param britishShipsCount
+     * @param IcebergCount
+     * @return
+     */
     public static boolean checkMap (Integer mapMaxX, Integer PiratesCount, Integer britishShipsCount , Integer IcebergCount)
     {
         Integer mapsize;
@@ -125,6 +158,13 @@ public class MapCreator {
         else return true;
     }
 
+    /**
+     * >??
+     * @param thunders
+     * @param thunder
+     * @param turns
+     * @return
+     */
     public static boolean checkThunders (Integer thunders, Float thunder, Integer turns){
         if (thunders > thunder)
             return false;
@@ -133,6 +173,12 @@ public class MapCreator {
             return false;
         else return true;
     }
+
+    /**
+     * ??
+     * @param turn
+     * @return
+     */
     public static boolean checkTurns (Integer turn)
     {
         if (turn < 0)
@@ -141,6 +187,12 @@ public class MapCreator {
 
     }
 
+    /**
+     * ??
+     * @param map
+     * @param storm
+     * @param turns
+     */
     public static void displayBugs(boolean map, boolean storm, boolean turns){
         if (map == false)
         {

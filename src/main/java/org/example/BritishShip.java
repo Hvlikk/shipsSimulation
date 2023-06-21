@@ -20,6 +20,10 @@ public class BritishShip extends Ship{
         setRandomDirection();
     }
 
+    /**
+     * Method returns List of available directions.
+     * @return
+     */
     public List<String> getAvailableDirections() {
         List<String> availableDirections = new ArrayList<>();
         availableDirections.add("North");
@@ -28,6 +32,10 @@ public class BritishShip extends Ship{
         availableDirections.add("West");
         return availableDirections;
     }
+
+    /**
+     * Method is setting random direction in process of creating objects.
+     */
     private void setRandomDirection()
     {
         ArrayList<String> directions = new ArrayList<>();
@@ -39,6 +47,11 @@ public class BritishShip extends Ship{
         this.direction = directions.get(random.nextInt(directions.size()));
     }
 
+    /**
+     * Method implements movement logic for British ships.
+     * @param map
+     * @param ships
+     */
     @Override
     public void shipMovement(char map[][], ArrayList<Ship> ships) {
         if (HEALTH <= 0)
@@ -74,7 +87,10 @@ public class BritishShip extends Ship{
     }
 
 
-
+    /**
+     * Method implements attack logic for British ships.
+     * @param ships
+     */
     @Override
     public void shipAttack(ArrayList<Ship> ships) {
         if (HEALTH <= 0)
@@ -94,6 +110,12 @@ public class BritishShip extends Ship{
         }
     }
 
+    /**
+     * Method is checking available ships to attack according to currently selected ship
+     * @param ships
+     * @param range
+     * @return
+     */
     private ArrayList<Ship> getShipsInRange(ArrayList<Ship> ships, Integer range){
         ArrayList<Ship> targets = new ArrayList<>();
         for (Ship ship : ships)
@@ -109,12 +131,18 @@ public class BritishShip extends Ship{
         return targets;
     }
 
-
+    /**
+     * Method which implements recieving attack damage
+     * @param DAMAGE
+     */
     public void recieveAttack(Integer DAMAGE) {
         HEALTH -= DAMAGE;
     }
 
-
+    /**
+     * Name getter, which returns value "British"
+     * @return
+     */
     @Override
     public String getName()
     {
@@ -122,6 +150,10 @@ public class BritishShip extends Ship{
         return name;
     }
 
+    /**
+     * Method calculate damage after attack move
+     * @return
+     */
     public Integer calculateDamage(){
         Random random = new Random();
         Integer isHit = random.nextInt(101);
@@ -130,6 +162,10 @@ public class BritishShip extends Ship{
         else return 0;
     }
 
+    /**
+     * Health points getter
+     * @return
+     */
     public Integer getHEALTH(){
         return HEALTH;
     }
