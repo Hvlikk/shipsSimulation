@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * Description of Ship
+ *
+ * The Ship abstract class is the base class for all types of ships in a sea battle simulation. Contains basic information and behaviors common to all ships.
  */
 public abstract class Ship {
     protected Integer id;

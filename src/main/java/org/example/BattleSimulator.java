@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Description of BattleSimulator
+ * The BattleSimulator class is responsible for simulating a sea battle between pirate and British ships. It manages interactions between ships, controls the order of moves and attacks, and monitors the end of the battle.
  */
 public class BattleSimulator {
     private static final String COLOR_RED = "\u001B[31m";

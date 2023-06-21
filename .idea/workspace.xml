@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="038246f7-0021-4b5f-b7c2-805bd74aac90" name="Changes" comment="Updated workspace.xml">
+    <list default="true" id="038246f7-0021-4b5f-b7c2-805bd74aac90" name="Changes" comment="Added comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BritishShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BritishShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PirateShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PirateShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
       <workItem from="1687290248797" duration="913000" />
       <workItem from="1687291193350" duration="1002000" />
       <workItem from="1687350207768" duration="295000" />
-      <workItem from="1687380941161" duration="378000" />
+      <workItem from="1687380941161" duration="1031000" />
     </task>
     <task id="LOCAL-00001" summary="#27 fixed collision">
       <created>1687292684682</created>
@@ -121,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687357247711</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added comments">
+      <created>1687381437485</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1687381437485</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +164,7 @@
     <MESSAGE value="Rolledback display changes after movement" />
     <MESSAGE value="Added comments, adjusted starting sequence code" />
     <MESSAGE value="Updated workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated workspace.xml" />
+    <MESSAGE value="Added comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comments" />
   </component>
 </project>
