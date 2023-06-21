@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class Main {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("Podaj wymiar (X,Y) mapy - mapa to kwadrat: ");
         Scanner in = new Scanner(System.in);

@@ -19,6 +19,14 @@ public abstract class Ship {
         this.MoveSpeed = MoveSpeed;
     }
 
+    /**
+     * Method checks if there is any collision with other ships or icebergs according to next ship movement
+     * @param newX
+     * @param newY
+     * @param ships
+     * @param map
+     * @return
+     */
     public Boolean isCollision(Integer newX, Integer newY, ArrayList<Ship> ships, char map[][]){
         for (Ship ship : ships){
             if (ship != this && ship.getPosX() == newX && ship.getPosY() == newY)
@@ -30,6 +38,14 @@ public abstract class Ship {
     }
 
 
+    /**
+     * Method returns Boolean value which informs if next move is valid
+     * @param newX
+     * @param newY
+     * @param map
+     * @param ships
+     * @return
+     */
     public Boolean isValidMove(Integer newX, Integer newY, char map[][], ArrayList<Ship> ships)
     {
         Integer mapWidth = map[0].length - 1;
@@ -41,39 +57,88 @@ public abstract class Ship {
         return !isCollision(newX, newY, ships, map);
     }
 
+    /**
+     *
+     *
+     */
     public abstract void shipAttack(ArrayList<Ship> ships);
 
+    /**
+     *
+     * @param map
+     * @param ships
+     */
     public abstract void shipMovement(char map[][], ArrayList<Ship> ships);
 
+    /**
+     *
+     * @param posX
+     */
     public void setPosX(Integer posX) {
         this.posX = posX;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getPosX() {
         return posX;
     }
 
+    /**
+     *
+     * @return
+     */
     public abstract String getName();
 
+    /**
+     *
+     * @return
+     */
     public Integer getPosY() {
         return posY;
     }
 
+    /**
+     *
+     * @param posY
+     */
     public void setPosY(Integer posY) {
         this.posY = posY;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getMoveSpeed() { return MoveSpeed; }
 
+    /**
+     *
+     * @param ships
+     */
     public static void sortShipsByMoveSpeed(ArrayList<Ship> ships) {
         ships.sort(Comparator.comparingInt(Ship::getMoveSpeed));
     }
 
+    /**
+     *
+     * @return
+     */
     public abstract Integer getHEALTH();
 
+    /**
+     *
+     * @param damage
+     */
     protected abstract void recieveAttack(Integer damage);
 }
