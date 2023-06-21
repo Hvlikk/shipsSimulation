@@ -21,6 +21,7 @@ public class Main {
         boolean CheckMap;
         boolean CheckThunders;
         boolean CheckTurns;
+        boolean RunProgram;
 
         Integer thunders = 0;
 
@@ -43,9 +44,9 @@ public class Main {
         CheckMap = MapCreator.checkMap(mapMaxX, piratesCount, britishShipsCount, icebergsCount);
         CheckThunders = MapCreator.checkThunders(thunders, thunder, turns);
         CheckTurns = MapCreator.checkTurns(turns);
-        MapCreator.displayBugs(CheckMap, CheckThunders, CheckTurns);
+        RunProgram = MapCreator.displayBugs(CheckMap, CheckThunders, CheckTurns);
 
-        if(CheckMap == true && CheckThunders == true && CheckTurns == true) {
+        if(RunProgram == true) {
             System.out.println("Statki brytyjskie = B, statki piratow = P, góry lodowe = I");
             System.out.println("Podgląd mapy przed rozpoczęciem bitwy:");
             System.out.println("=======================================");

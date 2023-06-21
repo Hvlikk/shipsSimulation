@@ -90,7 +90,8 @@ public class BattleSimulator {
 
     /**
      *
-     * Needs to be  filled
+     * Method creates a set amount of thunders in frequency set by the user
+     * If a thunder were to hit a ship, its health will be set to 0 effectively deleting it
      *
      * @param turns
      * @param thunders

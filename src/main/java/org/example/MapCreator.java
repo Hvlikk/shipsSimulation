@@ -143,7 +143,7 @@ public class MapCreator {
     }
 
     /**
-     * ??
+     * Method checks if the number of objects is not larger than the map size
      * @param mapMaxX
      * @param PiratesCount
      * @param britishShipsCount
@@ -162,7 +162,7 @@ public class MapCreator {
     }
 
     /**
-     * >??
+     * Method checks if the amount of thunders is allowed
      * @param thunders
      * @param thunder
      * @param turns
@@ -178,7 +178,7 @@ public class MapCreator {
     }
 
     /**
-     * ??
+     * Method checks for negative number of turns
      * @param turn
      * @return
      */
@@ -191,24 +191,35 @@ public class MapCreator {
     }
 
     /**
-     * ??
+     * Method displays messages if any of starting requirements are not met
      * @param map
      * @param storm
      * @param turns
+     * @return
      */
-    public static void displayBugs(boolean map, boolean storm, boolean turns){
+    public static Boolean displayBugs(boolean map, boolean storm, boolean turns){
+        int bugCount = 0;
         if (map == false)
         {
             System.out.println("Za dużo obiektów na mapie.");
+            bugCount++;
         }
         if (storm == false)
         {
-            System.out.println("Ilość błyskawic wynosi 0 bądź jest za wysoka. ");
+            System.out.println("Ilość błyskawic jest mniejsza od 1 lub jest za wysoka. ");
+            bugCount++;
         }
         if (turns == false)
         {
             System.out.println("Negatywna wartość parametru turns. ");
+            bugCount++;
         }
+        if (bugCount > 0)
+        {
+            System.out.println("Ilość niespełnionych warunków startu: " + bugCount);
+            return false;
+        }
+        return true;
     }
 
 }
