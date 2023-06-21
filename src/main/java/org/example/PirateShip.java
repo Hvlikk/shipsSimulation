@@ -5,7 +5,14 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Description of PiarteShip
+ * <var>
+ *     The PirateShip class is a class that inherits from the abstract class Ship and a Pirate ship in a sea battle simulation. This class contains additional information and behavior specific to pirate ships.
+ *
+ *     This class contains fields such as:
+ *     - accuracy which contains accuracy of cannons of Pirate ships
+ *     - health which contains value of health points that each ship have
+ *     - attack which contains value of damage that Pirate ship deals
+ *  </var>
  */
 public class PirateShip extends Ship{
     public static final String COLOR_BLUE = "\u001B[34m";

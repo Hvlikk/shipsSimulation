@@ -1,7 +1,8 @@
 package org.example;
 
 /**
- * Description of Iceberg
+ *   The Iceberg class is a class in a sea battle simulation. This class contains information about icebergs.
+ *  *
  */
 public class Iceberg {
     private Integer id;

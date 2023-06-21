@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.ArrayList;
 
 /**
- * Description of MapCreator
+ * The MapCreator class is responsible for creating the battle map and adding ships to that map. Stores information about map size and currently placed ships
  */
 public class MapCreator {
     private ArrayList<Ship> ships;

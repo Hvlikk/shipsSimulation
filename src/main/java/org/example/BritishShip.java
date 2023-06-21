@@ -5,7 +5,14 @@ import java.util.Random;
 import java.util.List;
 
 /**
- * Description of BritishShip
+ * <var>
+ *     The BritishShip class is a class that inherits from the abstract class Ship and a British ship in a sea battle simulation. This class contains additional information and behavior specific to british ships.
+ *
+ *     This class contains fields such as:
+ *     - accuracy which contains accuracy of cannons of British ships
+ *     - health which contains value of health points that each ship have
+ *     - attack which contains value of damage that British ship deals
+ *  </var>
  */
 public class BritishShip extends Ship{
     public static final String COLOR_BLUE = "\u001B[34m";
