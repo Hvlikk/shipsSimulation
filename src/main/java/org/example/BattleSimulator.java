@@ -173,7 +173,7 @@ public class BattleSimulator {
                 System.out.println(COLOR_GREEN + "==========================================================" + COLOR_RESET);
                 printDataToFile(battleInProgress, TurnCount, map, ships, startingBritishCount, startingPiratesCount, stormcount);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
